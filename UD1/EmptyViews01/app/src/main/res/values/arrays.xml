@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="descOrderBy">
+        <item>Alfabeticamente</item>
+        <item>Numero de pedido</item>
+    </string-array>
+    <string-array name="orderBy" >
+        <item>Alfabeticamente</item>
+        <item>Numero de pedido</item>
+    </string-array>
+</resources>

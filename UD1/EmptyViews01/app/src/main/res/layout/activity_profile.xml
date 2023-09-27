@@ -46,4 +46,10 @@
         android:layout_marginLeft="300dp"
         android:text="Guardar" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="io.github.xoanaraujo.emptyviews01.ConfigFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
