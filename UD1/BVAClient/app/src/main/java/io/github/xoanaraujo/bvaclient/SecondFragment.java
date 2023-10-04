@@ -1,4 +1,4 @@
-package io.github.xoanaraujo.sqlite01;
+package io.github.xoanaraujo.bvaclient;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import io.github.xoanaraujo.sqlite01.databinding.FragmentSecondBinding;
+import io.github.xoanaraujo.bvaclient.databinding.FragmentSecondBinding;
 
 public class SecondFragment extends Fragment {
 

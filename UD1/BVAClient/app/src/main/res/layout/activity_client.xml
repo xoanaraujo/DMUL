@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvFirstSurname5" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/etName"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -85,66 +85,68 @@
         app:layout_constraintTop_toTopOf="@+id/tvName" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/etSurname"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:ems="10"
         android:hint="Gonzalez Garcia"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/tvFirstSurname"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText2"
+        app:layout_constraintEnd_toEndOf="@+id/etName"
         app:layout_constraintTop_toTopOf="@+id/tvFirstSurname" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/etNIF"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:ems="10"
         android:hint="12345678A"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/tvFirstSurname3"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText3"
+        app:layout_constraintEnd_toEndOf="@+id/etSurname"
         app:layout_constraintTop_toTopOf="@+id/tvFirstSurname3" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spProv"
         android:layout_width="210dp"
         android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvFirstSurname4"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText5"
+        app:layout_constraintEnd_toEndOf="@+id/etNIF"
         app:layout_constraintTop_toTopOf="@+id/tvFirstSurname4" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cbVIP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="VIP"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal2" />
+        app:layout_constraintEnd_toEndOf="@+id/spProv"
+        app:layout_constraintTop_toBottomOf="@+id/etLog" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
+        android:id="@+id/etLat"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:ems="10"
+        android:hint="0.0"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/tvFirstSurname5"
-        app:layout_constraintEnd_toEndOf="@+id/spinner"
+        app:layout_constraintEnd_toEndOf="@+id/spProv"
         app:layout_constraintTop_toTopOf="@+id/tvFirstSurname5" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal2"
+        android:id="@+id/etLog"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:ems="10"
+        android:hint="0.0"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/tvFirstSurname6"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/etLat"
         app:layout_constraintTop_toTopOf="@+id/tvFirstSurname6" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSave"
         android:layout_width="220dp"
         android:layout_height="70dp"
         android:layout_marginBottom="64dp"

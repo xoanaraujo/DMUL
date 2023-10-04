@@ -1,4 +1,4 @@
-package io.github.xoanaraujo.sqlite01;
+package io.github.xoanaraujo.bvaclient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,42 +15,30 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import io.github.xoanaraujo.sqlite01.databinding.ActivityMainBinding;
-import io.github.xoanaraujo.sqlite01.model.Client;
+import io.github.xoanaraujo.bvaclient.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ListView;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private List<Client> listClients;
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        //setSupportActionBar(binding.toolbar);
+        setSupportActionBar(binding.toolbar);
 
-        //NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        //appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        Button btnAdd = findViewById(R.id.btnAdd);
-        ListView listViewClients = findViewById(R.id.listViewClients);
-
-        AsistenteBD asistenteBD = new AsistenteBD(this);
-
-        btnAdd.setOnClickListener(view -> {
-            Intent intent = new Intent(this, ClientActivity.class);
-            startActivity(intent);
-        });
+        binding.fab.setOnClickListener(view -> startActivity(new Intent(this, ClientActivity.class)));
     }
 
     @Override
