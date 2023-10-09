@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public ArrayList<ClientBase> getDatosClientes() {
         ArrayList<ClientBase> datosClientes = new ArrayList<>();
         SQLiteDatabase bd = new BDAssistant(this).getReadableDatabase();
-        Cursor filas=bd.rawQuery("SELECT * FROM clientes ORDER BY apellidos,nombre", null);
+        Cursor filas=bd.rawQuery("SELECT * FROM CLIENTS ORDER BY surname, name", null);
         int colIndexCodCliente = filas.getColumnIndex("codCliente");
         int colIndexNIF = filas.getColumnIndex("NIF");
         int colIndexNombre = filas.getColumnIndex("nombre");
