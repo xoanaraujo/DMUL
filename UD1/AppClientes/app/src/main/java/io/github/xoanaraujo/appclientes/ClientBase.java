@@ -1,31 +1,34 @@
 package io.github.xoanaraujo.appclientes;
 
 public class ClientBase {
+    private Integer codClient;
     private String name;
-    private String apellido1;
-    private String getApellido2;
+    private String surname;
     private String NIF;
 
-    public ClientBase(String name, String apellido1, String getApellido2, String NIF) {
+    private boolean VIP;
+
+    public ClientBase(Integer codClient, String name, String apellido1, String NIF, boolean VIP) {
+        this.codClient = codClient;
         this.name = name;
-        this.apellido1 = apellido1;
-        this.getApellido2 = getApellido2;
+        this.surname = apellido1;
         this.NIF = NIF;
+        this.VIP = VIP;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getApellido1() {
-        return apellido1;
-    }
-
-    public String getGetApellido2() {
-        return getApellido2;
+    public String getSurname() {
+        return surname;
     }
 
     public String getNIF() {
         return NIF;
     }
+
+    public int getCodClient () { return codClient; }
+    public boolean isVIP() { return VIP; }
+    @Override public String toString() { return name + ", " + surname +  "( NIF: " + NIF + ") "; }
 }

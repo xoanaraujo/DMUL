@@ -14,7 +14,7 @@ import java.util.List;
 
 public class BDAssistant extends SQLiteOpenHelper {
 
-    private final static String NAME ="Clientes_DB";
+    private final static String NAME ="CLIENTS";
     private final static int VERSION = 1;
 
     private static ContentValues values = new ContentValues();
@@ -26,31 +26,31 @@ public class BDAssistant extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sqlTablaProvincias = "" +
-                "CREATE TABLE provincias(" +
-                "codProvincia INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nombre TEXT NOT NULL)";
-        String sqlTablaClientes = "CREATE TABLE clientes (" +
-                "codCliente INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "CREATE TABLE PROVINCES(" +
+                "codProvince INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "name TEXT NOT NULL)";
+        String sqlTablaClientes = "CREATE TABLE CLIENTS (" +
+                "codClient INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NIF TEXT NOT NULL," +
-                "nombre TEXT NOT NULL," +
-                "apellidos TEXT," +
-                "codProvincia INTEGER," +
+                "name TEXT NOT NULL," +
+                "surname TEXT," +
+                "codProvince INTEGER," +
                 "VIP INTEGER," +
-                "latitud REAL," +
-                "longitud REAL)";
+                "latitude REAL," +
+                "longitude REAL)";
         db.execSQL(sqlTablaClientes);
         db.execSQL(sqlTablaProvincias);
-        values.put("nombre", "A Coruña");
-        db.insert("provincias", null, values);
+        values.put("name", "A Coruña");
+        db.insert("PROVINCES", null, values);
 
-        values.put("nombre", "Lugo");
-        db.insert("provincias", null, values);
+        values.put("name", "Lugo");
+        db.insert("PROVINCES", null, values);
 
-        values.put("nombre", "Ourense");
-        db.insert("provincias", null, values);
+        values.put("name", "Ourense");
+        db.insert("PROVINCES", null, values);
 
-        values.put("nombre", "Pontevedra");
-        db.insert("provincias", null, values);
+        values.put("name", "Pontevedra");
+        db.insert("PROVINCES", null, values);
 
 
     }
@@ -64,38 +64,37 @@ public class BDAssistant extends SQLiteOpenHelper {
         boolean isClientInserted = false;
         SQLiteDatabase clientDB  =  getWritableDatabase();
         values.put("NIF",client.getNIF());
-        values.put("nombre",client.getName());
-        values.put("apellidos",client.getApellido1() + " " + client.getGetApellido2());
-        values.put("provincia",client.getProvincia());
+        values.put("name",client.getName());
+        values.put("surname",client.getSurname());
+        values.put("province",client.getProvince());
         values.put("VIP",client.isVip());
-        values.put("latitud",client.getLatitud());
-        values.put("longitud",client.getAltitud());
+        values.put("latitude",client.getLatitude());
+        values.put("longitude",client.getLongitude());
 
-        if(clientDB.insert("CLIENTE",null, values) != -1)
+        if(clientDB.insert("CLIENTS",null, values) != -1){
             isClientInserted = true;
+        }
         clientDB.close();
         return  isClientInserted;
     }
     @SuppressLint("Range")
     public List<ClientBase> listClients(){
         List<ClientBase> listClients = new ArrayList<>();
-        SQLiteDatabase dbCLientes = getWritableDatabase();
-        String query = "SELECT * FROM CLIENTE";
-        Cursor cursor = dbCLientes.rawQuery(query,null);
+        SQLiteDatabase dbCLients = getWritableDatabase();
+        String query = "SELECT * FROM CLIENTS";
+        Cursor cursor = dbCLients.rawQuery(query,null);
         if(cursor != null){
-            String nombre, apellido1, apellido2,NIF;
+            String name, surname, NIF;
             try {
                 if(cursor.moveToFirst()) {
-                    int indxNombre = cursor.getColumnIndex("Nombre");
-                    int indxApellido1 = cursor.getColumnIndex("Apellido1");
-                    int indxApellido2 = cursor.getColumnIndex("Apellido2");
-                    int indxNIF = cursor.getColumnIndex("NIF");
+                    int indexName = cursor.getColumnIndex("Nombre");
+                    int indexSurname = cursor.getColumnIndex("Apellido1");
+                    int indexNIF = cursor.getColumnIndex("NIF");
                     do {
-                        nombre = cursor.getString(cursor.getColumnIndex("Nombre"));
-                        apellido1 = cursor.getString(cursor.getColumnIndex("Apellido1"));
-                        apellido2 = cursor.getString(cursor.getColumnIndex("Apellido2"));
+                        name = cursor.getString(cursor.getColumnIndex("Nombre"));
+                        surname = cursor.getString(cursor.getColumnIndex("Apellido1"));
                         NIF = cursor.getString(cursor.getColumnIndex("NIF"));
-                        listClients.add(new ClientBase(nombre, apellido1, apellido2, NIF));
+                        listClients.add(new ClientBase(name, surname, NIF));
 
                     } while (cursor.moveToNext());
                 }
@@ -103,7 +102,7 @@ public class BDAssistant extends SQLiteOpenHelper {
                 cursor.close();
             }
         }
-        dbCLientes.close();
+        dbCLients.close();
         return listClients;
     }
 

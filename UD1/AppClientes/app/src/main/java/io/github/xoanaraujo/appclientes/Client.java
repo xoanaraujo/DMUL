@@ -2,40 +2,40 @@ package io.github.xoanaraujo.appclientes;
 
 public class Client extends ClientBase{
 
-    private String provincia;
+    private String province;
 
     private  boolean vip;
 
-    private double latitud;
+    private double latitude;
 
-    private double altitud;
+    private double longitude;
 
 
 
-    public Client(String name, String apellido1, String getApellido2, String NIF, String provincia, boolean vip, double latitud, double altitud) {
-        super(name, apellido1, getApellido2, NIF);
-        this.provincia = provincia;
+    public Client(String name, String apellido1, String NIF, String province, boolean vip, double latitude, double longitude) {
+        super(name, apellido1, NIF);
+        this.province = province;
         this.vip = vip;
-        this.latitud = latitud;
-        this.altitud = altitud;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     //GETTERS
 
 
-    public String getProvincia() {
-        return provincia;
+    public String getProvince() {
+        return province;
     }
 
     public boolean isVip() {
         return vip;
     }
 
-    public double getLatitud() {
-        return latitud;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public double getAltitud() {
-        return altitud;
+    public double getLongitude() {
+        return longitude;
     }
 }
