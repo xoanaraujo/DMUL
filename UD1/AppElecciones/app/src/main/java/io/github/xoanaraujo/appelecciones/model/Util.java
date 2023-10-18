@@ -21,8 +21,8 @@ public class Util {
         return false;
     }
     public static String generateHash(String text) {
-        MessageDigest md = null;
-        byte[] hash = null;
+        MessageDigest md;
+        byte[] hash;
         try {
             md = MessageDigest.getInstance("SHA-512");
             hash = md.digest(text.getBytes("UTF-8"));

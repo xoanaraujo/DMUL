@@ -73,15 +73,34 @@
             android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
 
-        <ImageButton
-            android:id="@+id/btnRamen"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/baseline_ramen_dining_24"
-            app:tint="#BD5C12"
-            tools:ignore="SpeakableTextPresentCheck" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:includeFontPadding="false"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/registrarme"
+                android:textColor="#000000" />
+
+            <ImageButton
+                android:id="@+id/btnRamen"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/baseline_ramen_dining_24"
+                app:tint="#BD5C12"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
