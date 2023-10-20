@@ -2,10 +2,12 @@ package io.github.xoanaraujo.appelecciones;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,5 +40,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+        btnRamen.setOnClickListener(v -> startActivity(new Intent(this, VoteActivity.class)));
     }
 }

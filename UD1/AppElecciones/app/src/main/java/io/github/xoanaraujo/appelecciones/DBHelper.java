@@ -12,6 +12,11 @@ import io.github.xoanaraujo.appelecciones.model.Util;
 import io.github.xoanaraujo.appelecciones.model.Voter;
 
 public class DBHelper extends SQLiteOpenHelper {
+    private enum Partidos{
+        PP("PP"), PSOE("PSOE"), SUMAR("SUMAR"), VOX("VOX");
+        Partidos(String partido) {
+        }
+    }
 
     public static final int VERSION = 1;
     public static final String DB_ELECCIONES = "DB_ELECCIONES";
@@ -157,10 +162,4 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor.moveToNext();
     }
 
-    enum Partidos{
-        PP("PP"), PSOE("PSOE"), SUMAR("SUMAR"), VOX("VOX");
-
-        Partidos(String partido) {
-        }
-    }
 }
