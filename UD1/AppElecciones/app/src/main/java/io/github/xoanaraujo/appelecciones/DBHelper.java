@@ -99,8 +99,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_CANDIDATES, null, cv);
         cv.clear();
 
-        cv.put(COL_NIF, "");
-        cv.put(COL_PASSWORD, Util.generateHash(""));
+        cv.put(COL_NIF, "77550086C");
+        cv.put(COL_PASSWORD, Util.generateHash("abc123."));
         cv.put(COL_NUM_VOTES, 0);
     }
 
