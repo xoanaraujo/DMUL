@@ -5,14 +5,26 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import io.github.xoanaraujo.appelecciones.model.Candidate;
 import io.github.xoanaraujo.appelecciones.model.Util;
 import io.github.xoanaraujo.appelecciones.model.Voter;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    private enum Partidos{
+        PP("PP"), PSOE("PSOE"), SUMAR("SUMAR"), VOX("VOX");
+        Partidos(String partido) {
+        }
+    }
+
     public static final int VERSION = 1;
-    public static final String DB_ELECTIONS = "DB_ELECTIONS";
+    public static final String DB_ELECCIONES = "DB_ELECCIONES";
     public static final String TABLE_CANDIDATES = "CANDIDATES";
     public static final String COL_COD_CANDIDATE = "codCandidate";
     public static final String COL_NAME = "name";
@@ -30,7 +42,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(@Nullable Context context) {
-        super(context, DB_ELECTIONS, null, VERSION);
+        super(context, DB_ELECCIONES, null, VERSION);
     }
 
     @Override
@@ -87,14 +99,9 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_CANDIDATES, null, cv);
         cv.clear();
 
-        cv.put(COL_NIF, "");
-        cv.put(COL_PASSWORD, Util.generateHash(""));
+        cv.put(COL_NIF, "77550086C");
+        cv.put(COL_PASSWORD, Util.generateHash("abc123."));
         cv.put(COL_NUM_VOTES, 0);
-    }
-
-    private void setContentValues(String[] values){
-        ContentValues cv = new ContentValues();
-
     }
 
     @Override
@@ -144,21 +151,54 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    private boolean nifExists(String nif){
+    public ArrayList<Candidate> getCandidates(){
+        ArrayList<Candidate> candidates = new ArrayList<>();
+        String selectCandidates =
+                "SELECT C." + COL_COD_CANDIDATE + ", C." + COL_NAME + ", P." + COL_COD_PARTY + ", C." + COL_VOTES + " " +
+                "FROM " + TABLE_CANDIDATES + "C INNER JOIN " + TABLE_PARTIES + " P ON C." + COL_PARTY + "= P." + COL_COD_PARTY;
         SQLiteDatabase db = getReadableDatabase();
-
-        String selectNif = "SELECT " + COL_NIF +
+        Cursor cursor = db.rawQuery(selectCandidates, null);
+        int colCod = cursor.getColumnIndex(COL_COD_CANDIDATE);
+        int colName = cursor.getColumnIndex(COL_NAME);
+        int colParty = cursor.getColumnIndex(COL_NAME);
+        int colVotes = cursor.getColumnIndex(COL_VOTES);
+        if (cursor.moveToFirst()){
+            while (cursor.moveToNext()){
+                int codCandidate = cursor.getInt(colCod);
+                String name = cursor.getString(colName);
+                String party = cursor.getString(colParty);
+                int votes = cursor.getInt(colVotes);
+                candidates.add(new Candidate(codCandidate, name, party, votes));
+            }
+        }
+        return candidates;
+    }
+    private boolean voterExists(String nif, String password) {
+        String voterExists = "SELECT " + COL_COD_VOTER +
                 " FROM " + TABLE_VOTERS +
-                " WHERE " + COL_NIF + " = ?";
-
-        Cursor cursor = db.rawQuery(selectNif, new String[]{nif});
-        return cursor.moveToNext();
+                " WHERE " + COL_NIF + " = ? " + "AND " + COL_PASSWORD + " = ?";
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery(voterExists, new String[]{nif, Util.generateHash(password)});
+        return cursor.moveToFirst();
     }
 
-    enum Partidos{
-        PP("PP"), PSOE("PSOE"), SUMAR("SUMAR"), VOX("VOX");
+    public Voter getVoter(String voterNif, String voterPassword){
+        Voter voter = null;
 
-        Partidos(String partido) {
+        String selectNif = "SELECT " + COL_COD_VOTER + ", " + COL_NIF + ", " + COL_PASSWORD + " " +
+                " FROM " + TABLE_VOTERS +
+                " WHERE " + COL_NIF + " = ? AND " + COL_PASSWORD + " = ?";
+
+        Cursor cursor = getReadableDatabase().rawQuery(selectNif, new String[]{voterNif, voterPassword});
+        int colCod = cursor.getColumnIndex(COL_COD_VOTER);
+        int colNif = cursor.getColumnIndex(COL_NIF);
+        int colPassword = cursor.getColumnIndex(COL_PASSWORD);
+        if (cursor.moveToFirst()){
+            int cod = cursor.getInt(colCod);
+            String nif = cursor.getString(colNif);
+            String pass = cursor.getString(colPassword);
+            voter = new Voter(nif, pass);
         }
+        return voter;
     }
 }

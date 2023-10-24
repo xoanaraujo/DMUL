@@ -1,5 +1,8 @@
 package io.github.xoanaraujo.appelecciones.model;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -39,5 +42,9 @@ public class Util {
         for (int i = 0; i < raw.length; i++)
             sb.append(Integer.toString((raw[i] & 0xff) + 0x100, 16).substring(1));
         return sb.toString();
+    }
+
+    public static void launchToast(Context context, String m){
+        Toast.makeText(context, m, Toast.LENGTH_SHORT).show();
     }
 }
