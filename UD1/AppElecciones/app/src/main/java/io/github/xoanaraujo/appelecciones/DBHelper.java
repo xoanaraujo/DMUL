@@ -5,16 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import androidx.annotation.Nullable;
-
 import io.github.xoanaraujo.appelecciones.model.Util;
 import io.github.xoanaraujo.appelecciones.model.Voter;
 
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final int VERSION = 1;
-    public static final String DB_ELECCIONES = "DB_ELECCIONES";
+    public static final String DB_ELECTIONS = "DB_ELECTIONS";
     public static final String TABLE_CANDIDATES = "CANDIDATES";
     public static final String COL_COD_CANDIDATE = "codCandidate";
     public static final String COL_NAME = "name";
@@ -32,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(@Nullable Context context) {
-        super(context, DB_ELECCIONES, null, VERSION);
+        super(context, DB_ELECTIONS, null, VERSION);
     }
 
     @Override
