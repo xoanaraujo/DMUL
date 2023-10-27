@@ -1,16 +1,14 @@
 package io.github.xoanaraujo.appelecciones;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import io.github.xoanaraujo.appelecciones.model.Util;
 import io.github.xoanaraujo.appelecciones.model.Voter;
