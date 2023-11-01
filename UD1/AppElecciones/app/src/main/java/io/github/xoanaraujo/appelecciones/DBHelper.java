@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.xoanaraujo.appelecciones.model.Candidate;
 import io.github.xoanaraujo.appelecciones.model.Util;
@@ -105,12 +106,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        // Teletavisooh, teletavisohohoh, tinquigüinqui dipsi lalay po tinquigüinqui dipsi lalay po tinquigüinqui dipsi lalay poohh
+
     }
+
     public void addVoter(Voter voter){
         SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
         String insertVoter = "INSERT INTO " + TABLE_VOTERS + "(" + COL_NIF + ", " + COL_PASSWORD + ") VALUES (?, ?)";
         db.execSQL(insertVoter, new String[]{voter.getNif(), Util.generateHash(voter.getPassword())});
+
     }
 
     public void addVote(String nif, String candidateName) {
