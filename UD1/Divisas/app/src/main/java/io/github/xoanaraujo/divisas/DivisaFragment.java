@@ -12,9 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.text.DecimalFormat;
+
 public class DivisaFragment extends Fragment {
-    EditText etEuro;
-    EditText etDolar;
+    public static final double VAL_DIV0_DIV1 = 0.94;
+    EditText etDivisa0;
+    EditText etDivisa1;
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -22,20 +25,15 @@ public class DivisaFragment extends Fragment {
         }
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if (etDolar.hasFocus()){
-                if (!etDolar.getText().toString().equals("")){
-                    Double valorDolar = Double.parseDouble(etDolar.getText().toString()) * 0.94;
-                    etEuro.setEnabled(false);
-                    etEuro.setText(String.valueOf(valorDolar));
-                    etEuro.setEnabled(true);
-                }
-            } else if (etEuro.hasFocus()) {
-                if (!etEuro.getText().toString().equals("")){
-                    Double valorDolar = Double.parseDouble(etEuro.getText().toString()) * 1.07;
-                    etDolar.setEnabled(false);
-                    etDolar.setText(String.valueOf(valorDolar));
-                    etDolar.setEnabled(true);
-                }
+            DecimalFormat df = new DecimalFormat("#.##");
+            if (etDivisa1.hasFocus()){
+                etDivisa0.removeTextChangedListener(this);
+                etDivisa0.setText(!etDivisa1.getText().toString().equals("") ? df.format(Double.parseDouble(etDivisa1.getText().toString()) * VAL_DIV0_DIV1) : "");
+                etDivisa0.addTextChangedListener(this);
+            } else if (etDivisa0.hasFocus()) {
+                etDivisa1.removeTextChangedListener(this);
+                etDivisa1.setText(!etDivisa0.getText().toString().equals("") ? df.format(Double.parseDouble(etDivisa0.getText().toString()) * (1 / VAL_DIV0_DIV1)) : "");
+                etDivisa1.addTextChangedListener(this);
             }
         }
         @Override
@@ -52,10 +50,10 @@ public class DivisaFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        etEuro = view.findViewById(R.id.etEuro);
-        etDolar = view.findViewById(R.id.etDolar);
+        etDivisa0 = view.findViewById(R.id.etEuro);
+        etDivisa1 = view.findViewById(R.id.etDolar);
 
-        etEuro.addTextChangedListener(textWatcher);
-        etDolar.addTextChangedListener(textWatcher);
+        etDivisa0.addTextChangedListener(textWatcher);
+        etDivisa1.addTextChangedListener(textWatcher);
     }
 }

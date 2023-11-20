@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="96dp"
+        android:height="96dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:maxWidth="96dp"
+        android:maxHeight="96dp"
+        android:minWidth="96dp"
+        android:minHeight="96dp"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:backgroundTint="#714432"
+        app:cornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

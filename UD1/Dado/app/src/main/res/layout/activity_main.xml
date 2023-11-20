@@ -7,13 +7,23 @@
     tools:context=".MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentDivisa"
+        android:id="@+id/fragmentDado"
+        android:name="io.github.xoanaraujo.dado.DadoFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:name="io.github.xoanaraujo.divisas.DivisaFragment"
-        tools:layout="@layout/fragment_divisa" />
+        tools:layout="@layout/fragment_dado" />
+
+    <TextView
+        android:id="@+id/tvVal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/fragmentDado"
+        app:layout_constraintStart_toStartOf="@+id/fragmentDado"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentDado" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
