@@ -1,11 +1,10 @@
 package io.github.xoanaraujo.dado;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity{
+    public class MainActivity extends AppCompatActivity{
 
     private static final int MAX_VALUE = 100;
     @Override
