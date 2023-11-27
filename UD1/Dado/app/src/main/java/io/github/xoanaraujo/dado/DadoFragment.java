@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,15 +15,20 @@ import java.util.Random;
 
 public class DadoFragment extends Fragment {
 
+
     public interface OnDadoListener {
-        void onClick(int maxValue);
+        void onRoll(DadoFragment dadoFragment, int maxValue);
     }
     private OnDadoListener listener;
     private Button btnDado;
+    private TextView tvDebug;
     private int maxValue;
 
+    private final boolean debugActivated = true;
+    private int lastResult;
 
-    public void setDadoInit(int maxValue, OnDadoListener listener){
+
+    public void setOnDadoListener(int maxValue, OnDadoListener listener){
         this.listener = listener;
         this.maxValue = maxValue;
     }
@@ -37,13 +42,29 @@ public class DadoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         btnDado = view.findViewById(R.id.button);
-        btnDado.setOnClickListener( v -> {
-            if (maxValue < 1)
-                maxValue = 6;
-            int value = new Random().nextInt(maxValue) + 1;
-            listener.onClick(value);
-            btnDado.setText(String.valueOf(value));
-        });
+        btnDado.setOnClickListener( v -> rollDice());
+        tvDebug = view.findViewById(R.id.tvDebug);
+        tvDebug.setEnabled(debugActivated);
+    }
+
+    private void rollDice() {
+        if (maxValue < 1)
+            maxValue = 6;
+        int value = new Random().nextInt(maxValue) + 1;
+        if (debugActivated){
+            if (lastResult == value)
+                tvDebug.setText(String.valueOf(Integer.parseInt(tvDebug.getText().toString()) + 1));
+            else
+                tvDebug.setText("1");
+            lastResult = value;
+        }
+        listener.onRoll(this, value);
+        btnDado.setText(String.valueOf(value));
+    }
+    public void setDadoEnable(boolean b) {
+        btnDado.setEnabled(b);
+        if (debugActivated)
+            tvDebug.setEnabled(true);
     }
 
 }
