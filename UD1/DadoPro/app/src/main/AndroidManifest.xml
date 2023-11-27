@@ -13,7 +13,7 @@
         android:theme="@style/Theme.DadoPro"
         tools:targetApi="31">
         <activity
-            android:name=".viewmodel.activities.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

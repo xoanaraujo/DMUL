@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "io.github.xoanaraujo.dadopro"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "io.github.xoanaraujo.dadopro"
