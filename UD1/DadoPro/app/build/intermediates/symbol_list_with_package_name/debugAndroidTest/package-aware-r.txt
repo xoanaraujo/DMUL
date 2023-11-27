@@ -1,0 +1,3 @@
+io.github.xoanaraujo.dadopro.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme

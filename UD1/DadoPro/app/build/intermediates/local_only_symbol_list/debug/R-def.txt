@@ -1,0 +1,21 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable baseline_question_mark_24
+drawable dados
+drawable dados128
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+drawable rounded_corners
+id fragmentContainerView
+id imageButton6
+layout activity_main
+layout fragment_dado
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+style Base.Theme.DadoPro
+style Theme.DadoPro
+xml backup_rules
+xml data_extraction_rules
