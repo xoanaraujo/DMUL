@@ -24,13 +24,16 @@ public class DadoFragment extends Fragment {
     private TextView tvDebug;
     private int maxValue;
 
-    private final boolean debugActivated = true;
+    private final boolean debugActivated = false;
     private int lastResult;
 
 
     public void setOnDadoListener(int maxValue, OnDadoListener listener){
         this.listener = listener;
-        this.maxValue = maxValue;
+        if (maxValue < 2)
+            this.maxValue = 6;
+        else
+            this.maxValue = maxValue;
     }
     @Nullable
     @Override
@@ -43,13 +46,12 @@ public class DadoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         btnDado = view.findViewById(R.id.button);
         btnDado.setOnClickListener( v -> rollDice());
+        btnDado.setEnabled(false);
         tvDebug = view.findViewById(R.id.tvDebug);
         tvDebug.setEnabled(debugActivated);
     }
 
     private void rollDice() {
-        if (maxValue < 1)
-            maxValue = 6;
         int value = new Random().nextInt(maxValue) + 1;
         if (debugActivated){
             if (lastResult == value)

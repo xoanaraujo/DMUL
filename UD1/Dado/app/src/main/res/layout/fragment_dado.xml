@@ -20,6 +20,7 @@
         android:maxHeight="96dp"
         android:minWidth="96dp"
         android:minHeight="96dp"
+        android:text="6"
         android:textSize="34sp"
         android:textStyle="bold"
         app:backgroundTint="#714432"
