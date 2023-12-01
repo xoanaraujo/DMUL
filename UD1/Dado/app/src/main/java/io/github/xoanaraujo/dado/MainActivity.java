@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +24,14 @@ public class MainActivity extends AppCompatActivity implements DadoFragment.OnDa
 
         dados = new ArrayList<>();
         valorDados = new HashMap<>();
-        dados.add((DadoFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentDado1));
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        dados.add((DadoFragment)fragmentManager.findFragmentById(R.id.fragmentDado1));
         dados.add((DadoFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentDado2));
         dados.add((DadoFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentDado3));
-        for (int i = 0; i < dados.size(); i++) {
-            DadoFragment dado = dados.get(i);
-            dado.setOnDadoListener(MAX_VALUE, this);
-        }
+
+        for (DadoFragment dado : dados) dado.setOnDadoListener(MAX_VALUE, this);
 
         Button btnStart = findViewById(R.id.btnStart);
         btnStart.setOnClickListener(e -> startGame());
