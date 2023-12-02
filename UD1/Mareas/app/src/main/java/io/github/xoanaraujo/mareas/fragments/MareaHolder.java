@@ -1,12 +1,19 @@
 package io.github.xoanaraujo.mareas.fragments;
 
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import io.github.xoanaraujo.mareas.R;
+
 public class MareaHolder extends RecyclerView.ViewHolder {
+    TextView tvEstado, tvHora, tvAltura;
     public MareaHolder(@NonNull View itemView) {
         super(itemView);
+        tvEstado = itemView.findViewById(R.id.tvEstado);
+        tvEstado = itemView.findViewById(R.id.tvEstado);
+        tvEstado = itemView.findViewById(R.id.t);
     }
 }

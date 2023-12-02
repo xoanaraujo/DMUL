@@ -1,5 +1,7 @@
 package io.github.xoanaraujo.mareas.fragments;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -7,23 +9,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.github.xoanaraujo.mareas.R;
 import io.github.xoanaraujo.mareas.model.Marea;
 
 public class MareaAdapter extends RecyclerView.Adapter<MareaHolder> {
     private List<Marea> mareas;
+    private Context context;
+
+    public MareaAdapter(List<Marea> mareas, Context context) {
+        this.mareas = mareas;
+        this.context = context;
+    }
+
     @NonNull
     @Override
     public MareaHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        return new MareaHolder(LayoutInflater.from(context).inflate(R.layout.item_mareas, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull MareaHolder holder, int position) {
-
+        Marea marea = mareas.get(position);
+        holder.tvEstado.setText(marea.isPleamar() ? "Pleamar" : "Bajamar");
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mareas.size();
     }
 }
