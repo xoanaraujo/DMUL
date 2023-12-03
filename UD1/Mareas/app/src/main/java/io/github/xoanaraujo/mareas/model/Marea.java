@@ -3,20 +3,16 @@ package io.github.xoanaraujo.mareas.model;
 import java.time.LocalTime;
 
 public class Marea {
-    private String puerto;
     private int mareaId;
     private boolean pleamar;
-    private LocalTime hora;
+    private String hora;
+    private double altura;
 
-    public Marea(String puerto, int mareaId, boolean pleamar, LocalTime hora) {
-        this.puerto = puerto;
+    public Marea(int mareaId, boolean pleamar, String hora, double altura) {
         this.mareaId = mareaId;
         this.pleamar = pleamar;
         this.hora = hora;
-    }
-
-    public String getPuerto() {
-        return puerto;
+        this.altura = altura;
     }
 
     public int getMareaId() {
@@ -27,7 +23,11 @@ public class Marea {
         return pleamar;
     }
 
-    public LocalTime getHora() {
+    public String getHora() {
         return hora;
+    }
+
+    public double getAltura() {
+        return altura;
     }
 }

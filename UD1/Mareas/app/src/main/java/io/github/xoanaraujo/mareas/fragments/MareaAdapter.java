@@ -30,7 +30,9 @@ public class MareaAdapter extends RecyclerView.Adapter<MareaHolder> {
     @Override
     public void onBindViewHolder(@NonNull MareaHolder holder, int position) {
         Marea marea = mareas.get(position);
-        holder.tvEstado.setText(marea.isPleamar() ? "Pleamar" : "Bajamar");
+        holder.tvEstado.setText(marea.isPleamar() ? context.getString(R.string.pleamar) : "Bajamar");
+        holder.tvHora.setText(String.valueOf(marea.getHora()));
+        holder.tvAltura.setText(String.valueOf(marea.getAltura()));
     }
 
     @Override

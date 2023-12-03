@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mareas</string>
+    <string name="pleamar">Pleamar</string>
+    <string name="bajamar">Bajamar</string>
 </resources>
