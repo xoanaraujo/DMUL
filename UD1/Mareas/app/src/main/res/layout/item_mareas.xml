@@ -64,12 +64,12 @@
                     android:background="@android:color/transparent"
                     android:src="@drawable/outline_height_24"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView5"
+                    app:layout_constraintEnd_toStartOf="@+id/tvAltura"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/tvAltura"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/cardBg"

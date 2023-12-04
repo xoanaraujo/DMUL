@@ -13,7 +13,7 @@ public class MareaHolder extends RecyclerView.ViewHolder {
     public MareaHolder(@NonNull View itemView) {
         super(itemView);
         tvEstado = itemView.findViewById(R.id.tvEstado);
-        tvEstado = itemView.findViewById(R.id.tvEstado);
-        tvEstado = itemView.findViewById(R.id.t);
+        tvHora = itemView.findViewById(R.id.tvHora);
+        tvAltura = itemView.findViewById(R.id.tvAltura);
     }
 }

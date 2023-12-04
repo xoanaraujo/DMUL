@@ -20,8 +20,11 @@ import java.util.ArrayList;
 
 import io.github.xoanaraujo.mareas.R;
 import io.github.xoanaraujo.mareas.model.Marea;
+import io.github.xoanaraujo.mareas.model.Puerto;
 
 public class MareaFragment extends Fragment {
+
+
 
     @Nullable
     @Override
@@ -48,5 +51,13 @@ public class MareaFragment extends Fragment {
             mareas.add(new Marea(mareaId, pleamar, horaCompleta, altura));
         }
         return mareas;
+    }
+
+    private ArrayList<String> getPuertos(Document doc){
+        ArrayList<String> puertos = new ArrayList<>();
+        NodeList nlNombrePuerto = doc.getElementsByTagName("Mareas:nomePorto");
+        for (int i = 0; i < nlNombrePuerto.getLength(); i++)
+            puertos.add(nlNombrePuerto.item(i).getNodeValue());
+        return puertos;
     }
 }
