@@ -10,10 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Mareas"
+        android:theme="@style/Theme.MareasGalicia"
         tools:targetApi="31">
         <activity
-            android:name="io.github.xoanaraujo.mareas.viewmodel.MainActivity"
+            android:name=".viewmodel.activity.mainactivity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

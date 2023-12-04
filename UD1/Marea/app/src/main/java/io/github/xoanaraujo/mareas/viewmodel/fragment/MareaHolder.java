@@ -1,4 +1,4 @@
-package io.github.xoanaraujo.mareas.fragments;
+package io.github.xoanaraujo.mareas.viewmodel.fragment;
 
 import android.view.View;
 import android.widget.TextView;

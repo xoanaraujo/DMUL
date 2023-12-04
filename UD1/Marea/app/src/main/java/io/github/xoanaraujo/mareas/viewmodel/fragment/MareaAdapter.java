@@ -1,4 +1,4 @@
-package io.github.xoanaraujo.mareas.fragments;
+package io.github.xoanaraujo.mareas.viewmodel.fragment;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,6 +15,14 @@ import io.github.xoanaraujo.mareas.model.Marea;
 public class MareaAdapter extends RecyclerView.Adapter<MareaHolder> {
     private List<Marea> mareas;
     private Context context;
+    private OnItemSelectedListener itemSelectedListener;
+    private interface OnItemSelectedListener{
+        void onItemSelected(int position);
+    }
+
+    public void setItemSelectedListener(OnItemSelectedListener itemSelectedListener) {
+        this.itemSelectedListener = itemSelectedListener;
+    }
 
     public MareaAdapter(List<Marea> mareas, Context context) {
         this.mareas = mareas;

@@ -1,4 +1,4 @@
-package io.github.xoanaraujo.mareas.fragments;
+package io.github.xoanaraujo.mareas.viewmodel.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
