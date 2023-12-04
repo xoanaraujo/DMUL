@@ -12,12 +12,13 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import io.github.xoanaraujo.mareas.R;
+import io.github.xoanaraujo.marea.R;
+import io.github.xoanaraujo.mareas.model.Puerto;
 
-public class PuertoAdapter extends ArrayAdapter<String> {
-    private TextView tvPuerto;
+public class PuertoAdapter extends ArrayAdapter<Puerto> {
+     TextView tvPuerto;
 
-    public PuertoAdapter(@NonNull Context context, @NonNull List<String> objects) {
+    public PuertoAdapter(@NonNull List<Puerto> objects, @NonNull Context context) {
         super(context, 0, objects);
     }
 
@@ -26,20 +27,21 @@ public class PuertoAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        String puerto = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_puerto, parent, false);
-            tvPuerto.setText(convertView.findViewById(R.id.tvPuerto));
+            tvPuerto = convertView.findViewById(R.id.tvPuerto);
             convertView.setTag(tvPuerto);
-        } else
+        } else{
+            Puerto puerto = getItem(position);
             tvPuerto = (TextView) convertView.getTag();
-        tvPuerto.setText(puerto);
+            tvPuerto.setText(puerto.toString());
+        }
         return convertView;
     }
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return super.getDropDownView(position, convertView, parent);
+        return getView(position, convertView, parent);
     }
 }
