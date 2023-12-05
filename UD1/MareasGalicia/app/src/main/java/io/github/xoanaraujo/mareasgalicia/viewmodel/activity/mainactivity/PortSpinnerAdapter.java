@@ -15,8 +15,8 @@ import io.github.xoanaraujo.mareasgalicia.model.Port;
 
 public class PortSpinnerAdapter extends ArrayAdapter<Port> {
 
-    public PortSpinnerAdapter(@NonNull Context context, int resource, @NonNull Port[] objects) {
-        super(context, resource, objects);
+    public PortSpinnerAdapter(@NonNull Context context, @NonNull Port[] objects) {
+        super(context, 0, objects);
     }
 
     @NonNull
@@ -28,10 +28,11 @@ public class PortSpinnerAdapter extends ArrayAdapter<Port> {
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return super.getDropDownView(position, convertView, parent);
+        return createView(position, convertView, parent);
     }
+
     private View createView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null){
+        if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_port_spinner, parent, false);
         }
 
@@ -39,6 +40,7 @@ public class PortSpinnerAdapter extends ArrayAdapter<Port> {
         Port port = getItem(position);
         if (port != null)
             tvPort.setText(port.getName());
+        return convertView;
     }
 
 }
