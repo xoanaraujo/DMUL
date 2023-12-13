@@ -1,8 +1,11 @@
 package xoanaraujo.examenuf1.controller;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,12 +33,24 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleItemHolder> {
     @Override
     public void onBindViewHolder(@NonNull ExampleItemHolder holder, int position) {
         ExampleItem item = items.get(position);
-        holder.tvName.setText(item.getName());
-        holder.tvIncId.setText(item.getIncId());
+        if (item != null){
+            holder.tvName.setText(item.getName());
+            holder.tvIncId.setText(String.valueOf(item.getIncId())); // TODO IMPORTANTE PARSEAR CADA OBJETO A STRING!!!!
+        }
     }
 
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+}
+class ExampleItemHolder extends RecyclerView.ViewHolder{
+    TextView tvName, tvIncId;
+
+    public ExampleItemHolder(@NonNull View itemView) {
+        super(itemView);
+        tvIncId = itemView.findViewById(R.id.tvIncId);
+        tvName = itemView.findViewById(R.id.tvName);
     }
 }

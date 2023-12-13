@@ -1,6 +1,7 @@
 package xoanaraujo.examenuf1;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -26,5 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         rv.setAdapter(new ExampleAdapter(this, items));
+        rv.setLayoutManager(new LinearLayoutManager(this));
     }
 }
