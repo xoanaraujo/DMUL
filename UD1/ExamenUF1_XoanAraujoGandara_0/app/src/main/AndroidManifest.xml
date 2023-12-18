@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ExamenUF1_XoanAraujoGandara_0"
         tools:targetApi="31">
         <activity
+            android:name=".AplicacionNEB"
+            android:exported="false" />
+        <activity
+            android:name=".JuegoERCActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
