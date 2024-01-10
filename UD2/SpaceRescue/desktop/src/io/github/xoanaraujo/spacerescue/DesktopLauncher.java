@@ -10,7 +10,7 @@ import io.github.xoanaraujo.spacerescue.MyGdxGame;
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {
 
-	public static final int SIZE = 150;
+	public static final int SIZE = 200;
 
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();

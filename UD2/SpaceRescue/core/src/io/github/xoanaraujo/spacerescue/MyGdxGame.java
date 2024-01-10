@@ -7,17 +7,20 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
+import java.util.Random;
 
 public class MyGdxGame extends ApplicationAdapter {
 	private static final int SIZE = 64;
 	private SpriteBatch batch;
 	private Texture earthTexture;
-	private boolean up;
-	private int x, y, scale;
+	private int scale;
+	private float velocity;
+	private Vector2 direction, position;
 
 	@Override
 	public void create () {
@@ -25,25 +28,30 @@ public class MyGdxGame extends ApplicationAdapter {
 
 		earthTexture = new Texture(Gdx.files.internal("Terran.png"));
 		earthTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-		x = y = 0;
+		position = new Vector2(1, 1);
 		scale = 1;
+		velocity = 5f;
+		Random rd = new Random();
+
+		direction = new Vector2( rd.nextFloat(0, 1), rd.nextFloat(0,1)); //
 	}
 
 	@Override
 	public void render () {
 		ScreenUtils.clear(0.14f, 0.14f, 0.18f, 1);
-		if (x == (Gdx.graphics.getWidth() - earthTexture.getWidth()) || x == 0)
-			up = !up;
-		if (up){
-			x++;
-			y++;
+		if (position.x >= (Gdx.graphics.getWidth() - earthTexture.getWidth()) || ((position.x <= 0))){
+			direction.x = - direction.x;
+			Gdx.app.log("Direccion X", " Cambia de direccion X");
 		}
-		if (!up){
-			x--;
-			y--;
+		if ((position.y >= (Gdx.graphics.getHeight() - earthTexture.getHeight()) || (position.y <= 0))){
+			direction.y = - direction.y;
+			Gdx.app.log("Direccion Y", " Cambia de direccion Y");
 		}
+		position.x = (position.x + velocity * direction.x);
+		position.y = (position.y + velocity * direction.y);
+
 		batch.begin();
-		batch.draw(earthTexture, x, y);
+		batch.draw(earthTexture, position.x, position.y);
 		batch.end();
 	}
 	
