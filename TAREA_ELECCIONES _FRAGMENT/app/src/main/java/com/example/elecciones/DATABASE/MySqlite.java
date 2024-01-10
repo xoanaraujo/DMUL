@@ -33,7 +33,7 @@ public class MySqlite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String tableCiudadano =
+        String tableCiudadano = "CREATE TABLE CIUDADANO(" +
                 "ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "NIF TEXT UNIQUE," +
                 "PASSWORD TEXT," +
@@ -60,6 +60,7 @@ public class MySqlite extends SQLiteOpenHelper {
         for (Partido p : Recursos.listPartidos) {
            sql.bindString(1, p.getAcronym());
             sql.bindLong(2,p.getCorporativeColor());
+            Log.i("Vergel: ", String.valueOf(sql.executeInsert()));
           /*  values.put("ACRONYM", p.getAcronym());
             values.put("COLOR", p.getCorporativeColor());
             db.insert("PARTIDO", null, values);*/
