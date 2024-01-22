@@ -6,9 +6,11 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class Player extends InputAdapter {
+    private TextureRegion textureRegion;
     private Texture playerTexture;
     private Vector2 position, direction;
     private float velocity;
@@ -46,6 +48,7 @@ public class Player extends InputAdapter {
             default:
                 Gdx.app.log("Player::keyDown()", keycode + " not mapped");
         }
+        direction.nor();
         return true;
     }
 
@@ -75,12 +78,13 @@ public class Player extends InputAdapter {
             default:
                 Gdx.app.log("Player::keyUp()", keycode + " not mapped");
         }
+        direction.nor();
         return true;
     }
 
     public void movePlayer() {
         float deltatime = Gdx.graphics.getDeltaTime();
-        direction.nor();
+
         position.x += direction.x * deltatime * velocity;
         position.y += direction.y * deltatime * velocity;
 
