@@ -9,8 +9,10 @@ public class Entity {
         this.sprite = sprite;
     }
     public void draw(SpriteBatch batch){
-        batch.begin();
         batch.draw(sprite.getTexture(), sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
-        batch.end();
+    }
+
+    public Sprite getSprite() {
+        return sprite;
     }
 }

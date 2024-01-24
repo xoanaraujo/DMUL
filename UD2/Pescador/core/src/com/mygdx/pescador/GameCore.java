@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.pescador.Util.Assets;
 import com.mygdx.pescador.Util.GameUtil;
 import com.mygdx.pescador.entities.entity.Entity;
 import com.mygdx.pescador.entities.Pescador;
@@ -23,20 +24,17 @@ public class GameCore extends ApplicationAdapter {
 	@Override
 	public void create () {
 		Gdx.graphics.setTitle("Atlas");
+		Assets.cargarTexturas();
+
 
 		camera = new OrthographicCamera();
 
 		batch = new SpriteBatch();
 		atlas = new TextureAtlas("graficos/atlas.atlas");
 
-		background = new Entity(new Sprite(new Texture(Gdx.files.internal("graficos/fondo.jpg")), 0, 0, GameUtil.WIDTH, GameUtil.HEIGHT));
-
-		Sprite sprite = atlas.createSprite("pescador");
-		sprite.setX(50);
-		sprite.setY(128);
-		sprite.setRegionWidth(80);
-		sprite.setRegionHeight(60);
-		pescador = new Pescador(sprite, new Vector2(0 , 0), 100f);
+		// background = new Entity(new Sprite(Assets.fondo, 0, 0, GameUtil.WIDTH, GameUtil.HEIGHT));
+		// Sprite sprite = new Sprite(Assets.pescador.getTexture(), 50, 128, 80, 60);
+		pescador = new Pescador(Assets.sprites.get(0), new Vector2(0 , 0), 100f);
 
 
 		Gdx.input.setInputProcessor(pescador);
@@ -46,10 +44,12 @@ public class GameCore extends ApplicationAdapter {
 	public void render () {
 		ScreenUtils.clear(1, 0, 0, 1);
 
-		pescador.move();
+		//pescador.move();
 
-		background.draw(batch);
+		batch.begin();
+		//background.draw(batch);
 		pescador.draw(batch);
+		batch.end();
 	}
 
 	@Override
