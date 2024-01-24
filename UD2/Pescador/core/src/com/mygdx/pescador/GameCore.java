@@ -7,11 +7,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.pescador.Util.GameUtil;
-import com.mygdx.pescador.entity.Entity;
+import com.mygdx.pescador.entities.entity.Entity;
+import com.mygdx.pescador.entities.Pescador;
 
 public class GameCore extends ApplicationAdapter {
 	private OrthographicCamera camera;
@@ -29,10 +29,14 @@ public class GameCore extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		atlas = new TextureAtlas("graficos/atlas.atlas");
 
-		background = new Entity(new TextureRegion(new Texture(Gdx.files.internal("graficos/fondo.jpg"))), new Vector2(0, 0), GameUtil.WIDTH, GameUtil.HEIGHT);
+		background = new Entity(new Sprite(new Texture(Gdx.files.internal("graficos/fondo.jpg")), 0, 0, GameUtil.WIDTH, GameUtil.HEIGHT));
 
 		Sprite sprite = atlas.createSprite("pescador");
-		pescador = new Pescador(sprite, new Vector2(50, 128), 80, 60, new Vector2(0 , 0), 100f);
+		sprite.setX(50);
+		sprite.setY(128);
+		sprite.setRegionWidth(80);
+		sprite.setRegionHeight(60);
+		pescador = new Pescador(sprite, new Vector2(0 , 0), 100f);
 
 
 		Gdx.input.setInputProcessor(pescador);

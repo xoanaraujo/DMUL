@@ -1,17 +1,17 @@
-package com.mygdx.pescador;
+package com.mygdx.pescador.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.pescador.entity.DinamicEntity;
+import com.mygdx.pescador.entities.entity.DinamicEntity;
 
 public class Pescador extends DinamicEntity implements InputProcessor {
     private boolean movable;
 
-    public Pescador(TextureRegion texture, Vector2 position, Integer width, Integer height, Vector2 direction, Float velocity) {
-        super(texture, position, width, height, direction, velocity);
+    public Pescador(Sprite sprite, Vector2 direction, Float velocity) {
+        super(sprite, direction, velocity);
         this.movable = true;
     }
 
