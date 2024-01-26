@@ -1,4 +1,4 @@
-package com.mygdx.pescador.Util;
+package com.cdm.pescador;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -7,22 +7,22 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
-
 
 public class Assets {
 
+	public static Texture fondo, fondoPresentacion;
 	public static BitmapFont fuente;
 	public static TextureAtlas atlas;
-	public static Array<Sprite> sprites;
+	public static TextureRegion pescador,anzuelo,sedal,pezAzul;
 
 	public static Sound captura, finDelJuego;
 	public static Music musicaDeFondo;
-	
+
 	public static void cargarTexturas(){
+		fondo = new Texture(Gdx.files.internal("graficos/fondo.jpg"));
+		fondoPresentacion = new Texture(Gdx.files.internal("graficos/fondo.jpg"));
 
 		captura=Gdx.audio.newSound(Gdx.files.internal("sonidos/captura.mp3"));
 		finDelJuego=Gdx.audio.newSound(Gdx.files.internal("sonidos/finDelJuego.mp3"));
@@ -34,18 +34,20 @@ public class Assets {
 		fuente.setColor(Color.RED);
 
 		atlas = new TextureAtlas(Gdx.files.internal("graficos/atlas.atlas"));
-		TextureRegion region = atlas.findRegion("pescador");
-		sprites = new Array<>();
-		System.out.println(region.getRegionX() + " " + region.getRegionY() + " " + region.getRegionWidth() + " " + region.getRegionHeight());
-		sprites.add(new Sprite(region, region.getRegionX(), region.getRegionY(), region.getRegionWidth(), region.getRegionHeight()));
-		System.out.println(sprites.get(0).getX() + " " + sprites.get(0).getY() + " " + sprites.get(0).getWidth() + " " + sprites.get(0).getHeight());
+		pescador = atlas.findRegion("pescador");
+		anzuelo = atlas.findRegion("anzuelo");
+		sedal = atlas.findRegion("punto");
+
+		pezAzul=atlas.findRegion("pezAzul");
+
+
 	}
-	
+
 	public static void liberarTexturas(){
 		captura.dispose();
 		musicaDeFondo.dispose();
 		finDelJuego.dispose();
-		// fondo.dispose();
+		fondo.dispose();
 		fuente.dispose();
 		atlas.dispose();
 	}

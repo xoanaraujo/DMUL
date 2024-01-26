@@ -1,18 +1,29 @@
 package com.mygdx.pescador.entities.entity;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
 public class Entity {
-    protected Sprite sprite;
-    public Entity(Sprite sprite) {
-        this.sprite = sprite;
+    protected TextureRegion textureRegion;
+    protected Vector2 position;
+    protected int width, height;
+    public Entity(TextureRegion textureRegion, Vector2 position, int width, int height) {
+        this.textureRegion = textureRegion;
+        this.position = position;
+        this.width = width;
+        this.height = height;
     }
     public void draw(SpriteBatch batch){
-        batch.draw(sprite.getTexture(), sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
+        batch.draw(textureRegion, position.x, position.y, width, height);
     }
 
-    public Sprite getSprite() {
-        return sprite;
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public Vector2 getPosition() {
+        return position;
     }
 }

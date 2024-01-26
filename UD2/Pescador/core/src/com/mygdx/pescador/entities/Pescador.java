@@ -3,15 +3,17 @@ package com.mygdx.pescador.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.pescador.entities.entity.DinamicEntity;
 
 public class Pescador extends DinamicEntity implements InputProcessor {
     private boolean movable;
 
-    public Pescador(Sprite sprite, Vector2 direction, Float velocity) {
-        super(sprite, direction, velocity);
+    public Pescador(TextureRegion textureRegion, Vector2 position, int width, int height, Vector2 direction, Float velocity) {
+        super(textureRegion, position, width, height, direction, velocity);
         this.movable = true;
     }
 
@@ -93,5 +95,7 @@ public class Pescador extends DinamicEntity implements InputProcessor {
         return false;
     }
 
-
+    public boolean isMovable() {
+        return movable;
+    }
 }
