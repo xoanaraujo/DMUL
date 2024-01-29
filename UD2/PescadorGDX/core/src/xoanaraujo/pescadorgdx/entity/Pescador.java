@@ -4,10 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+import xoanaraujo.pescadorgdx.interfaces.PescadorListener;
 import xoanaraujo.pescadorgdx.util.Assets;
 import xoanaraujo.pescadorgdx.util.Const;
 
-public class Pescador extends DinamicEntity{
+public class Pescador extends DinamicEntity implements PescadorListener {
 
     private static Pescador instance;
 
@@ -35,5 +36,10 @@ public class Pescador extends DinamicEntity{
             else
                 position.x = xPos;
         }
+    }
+
+    @Override
+    public float getXPosition() {
+        return position.x;
     }
 }

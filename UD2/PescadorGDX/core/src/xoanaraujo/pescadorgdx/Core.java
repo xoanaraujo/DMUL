@@ -42,6 +42,7 @@ public class Core extends ApplicationAdapter {
 		anzuelo.move();
 
 		batch.begin();
+		batch.draw(background, 0, 0, Const.WORLD_WIDTH, Const.WORLD_HEIGHT);
 		pescador.draw(batch, null);
 		anzuelo.draw(batch, null);
 		batch.end();
