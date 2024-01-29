@@ -62,7 +62,6 @@ public class GameCore extends ApplicationAdapter {
 		camera.setToOrtho(false, GameUtil.WIDTH, GameUtil.HEIGHT);
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
-		super.resize(width, height);
 	}
 
 	@Override
