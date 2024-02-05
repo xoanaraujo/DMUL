@@ -16,7 +16,7 @@ public class NumberScreen extends ScreenAdapter implements NumberListener{
     private static final String TAG = GameScreen.class.getSimpleName();
     private static final Random rd = new Random();
     private static final Color background = new Color(0.14f, 0.14f,0.14f, 1f);
-    private static final float TIME = 1f;
+    private float time;
     private final BitmapFont font;
     private float cnt;
     private int number, width, height;
@@ -33,6 +33,7 @@ public class NumberScreen extends ScreenAdapter implements NumberListener{
     public void show() {
         cnt = 0;
         number = rd.nextInt(9);
+        time = context.getTime();
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(font, String.valueOf(number));
         width = (int) glyphLayout.width;
@@ -43,7 +44,7 @@ public class NumberScreen extends ScreenAdapter implements NumberListener{
     public void render(float delta) {
         ScreenUtils.clear(background);
         cnt += delta;
-        if (cnt > TIME){
+        if (cnt > time){
             context.switchScreen(ScreenType.GAME);
         }
         batch.begin();

@@ -25,13 +25,17 @@ public class Core extends Game {
 	private FitViewport viewport;
 	private EnumMap<ScreenType, Screen> screens;
 
+	private float time;
+	private int points;
+
 	@Override
 	public void create () {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
 		viewport = new FitViewport(Const.WIDTH, Const.HEIGHT);
 		screens = new EnumMap<>(ScreenType.class);
-
+		time = 1.5f;
+		points = 0;
 		switchScreen(ScreenType.NUMBER);
 	}
 
@@ -61,5 +65,20 @@ public class Core extends Game {
 
 	public FitViewport getViewport() {
 		return viewport;
+	}
+
+	public float getTime() {
+		return time;
+	}
+	public void setTime(float time) {
+		this.time = time;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 }
