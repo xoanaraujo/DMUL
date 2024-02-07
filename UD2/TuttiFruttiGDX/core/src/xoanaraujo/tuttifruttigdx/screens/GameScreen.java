@@ -1,6 +1,6 @@
 package xoanaraujo.tuttifruttigdx.screens;
 
-import static xoanaraujo.tuttifruttigdx.util.GameConst.BIT_BALL;
+import static xoanaraujo.tuttifruttigdx.util.GameConst.BIT_APPLE;
 import static xoanaraujo.tuttifruttigdx.util.GameConst.BIT_WALL;
 import static xoanaraujo.tuttifruttigdx.util.GameConst.BODY_DEF;
 import static xoanaraujo.tuttifruttigdx.util.GameConst.FIXTURE_DEF;
@@ -61,7 +61,7 @@ public class GameScreen extends ScreenAbstract implements GameInputListener {
         body.setUserData("BALL");
         FIXTURE_DEF.restitution = 0.2f;
         FIXTURE_DEF.density =1;
-        FIXTURE_DEF.filter.categoryBits = BIT_BALL;
+        FIXTURE_DEF.filter.categoryBits = BIT_APPLE;
         FIXTURE_DEF.filter.maskBits = -1;
 
         CircleShape circleShape = new CircleShape();

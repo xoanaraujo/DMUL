@@ -27,6 +27,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import java.util.EnumMap;
 
+import xoanaraujo.tuttifruttigdx.fruit.FruitManager;
 import xoanaraujo.tuttifruttigdx.input.InputManager;
 import xoanaraujo.tuttifruttigdx.screens.GameScreen;
 import xoanaraujo.tuttifruttigdx.screens.ScreenAbstract;
@@ -38,6 +39,7 @@ public class Core extends Game {
 	private AssetManager assetManager;
 	private InputManager inputManager;
 	private World world;
+	private FruitManager fruitManager;
 	private WorldContactAdapter worldContactAdapter;
 	private OrthographicCamera camera;
 	private FitViewport fitViewport;
@@ -60,7 +62,8 @@ public class Core extends Game {
 
 		Box2D.init();
 		world = new World(new Vector2(0, -10), true);
-		worldContactAdapter = new WorldContactAdapter();
+		fruitManager = new FruitManager(this);
+		worldContactAdapter = new WorldContactAdapter(this);
 		world.setContactListener(worldContactAdapter);
 
 		batch = new SpriteBatch();
@@ -134,5 +137,9 @@ public class Core extends Game {
 
 	public Box2DDebugRenderer getDebugRenderer() {
 		return debugRenderer;
+	}
+
+	public FruitManager getFruitManager() {
+		return fruitManager;
 	}
 }

@@ -9,8 +9,9 @@ public class GameConst {
     public static final BodyDef BODY_DEF = new BodyDef();
     public static final FixtureDef FIXTURE_DEF = new FixtureDef();
     public static final float FPS = 60;
-    public static final int BIT_WALL = 1 << 0;
-    public static final int BIT_BALL = 1 << 1;
+    public static final Short BIT_WALL = 1 << 0;
+    public static final Short BIT_APPLE = 1 << 1;
+    public static final Short BIT_ORANGE = 1 << 2;
     public static void resetBodyAndFixtureDef(){
 
         BODY_DEF.position.set(0, 0);

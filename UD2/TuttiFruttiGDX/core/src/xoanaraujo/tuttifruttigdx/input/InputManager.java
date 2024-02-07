@@ -22,8 +22,7 @@ public class InputManager extends InputAdapter {
     }
 
     public void notifyTouchDown(int screenX, int screenY){
-        for (final GameInputListener listener :
-                listeners) {
+        for (final GameInputListener listener : listeners) {
             listener.touchDown(this, screenX, screenY);
         }
     }
