@@ -13,8 +13,8 @@ public class WorldContactAdapter implements ContactListener {
     private final FruitManager fruitManager;
 
 
-    public WorldContactAdapter(Core contextt) {
-        this.fruitManager = contextt.getFruitManager();
+    public WorldContactAdapter(Core context) {
+        this.fruitManager = context.getFruitManager();
     }
     @Override
     public void beginContact(Contact contact) {

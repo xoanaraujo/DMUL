@@ -14,12 +14,11 @@ import static xoanaraujo.tuttifruttigdx.util.GameConst.FIXTURE_DEF;
 public class Fruit{
     private static final String TAG = Fruit.class.getSimpleName();
     private final World world;
-    private Body body;
     private Vector2 position;
     private float radius;
 
-    public Fruit(Core context, FruitType type, Vector2 position) {
-        this.world = context.getWorld();
+    public Fruit(World world, FruitType type, Vector2 position) {
+        this.world = world;
         this.position = position;
         this.radius = type.getRadius();
     }
@@ -27,7 +26,7 @@ public class Fruit{
     public void createBody(){
         resetBodyAndFixtureDef();
         BODY_DEF.gravityScale = 1f;
-        BODY_DEF.position.set(position.x , position.y); //(WORLD_WIDTH >> 1), WORLD_HEIGHT / 3
+        BODY_DEF.position.set(WORLD_WIDTH / 2 , WORLD_HEIGHT / 2); //(WORLD_WIDTH >> 1), WORLD_HEIGHT / 3
         BODY_DEF.fixedRotation = true;
         BODY_DEF.type = BodyDef.BodyType.DynamicBody;
         Body body = world.createBody(BODY_DEF);

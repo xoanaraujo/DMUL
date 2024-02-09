@@ -10,6 +10,7 @@ import static xoanaraujo.tuttifruttigdx.util.GameConst.resetBodyAndFixtureDef;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -19,20 +20,28 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import xoanaraujo.tuttifruttigdx.Core;
+import xoanaraujo.tuttifruttigdx.fruit.Fruit;
+import xoanaraujo.tuttifruttigdx.fruit.FruitManager;
+import xoanaraujo.tuttifruttigdx.fruit.FruitType;
 import xoanaraujo.tuttifruttigdx.input.GameInputListener;
 import xoanaraujo.tuttifruttigdx.input.InputManager;
 
+import java.util.Random;
+
 public class GameScreen extends ScreenAbstract implements GameInputListener {
     private static final String TAG = GameScreen.class.getSimpleName();
+    private static final Random rd = new Random();
     private final World world;
     private final SpriteBatch batch;
     private final Box2DDebugRenderer debugRenderer;
+    private final FruitManager fruitManager;
 
     public GameScreen(Core context) {
         super(context);
         world = context.getWorld();
         batch = context.getBatch();
         debugRenderer = new Box2DDebugRenderer();
+        fruitManager = context.getFruitManager();
         context.getInputManager().addListener(this);
         generateWalls();
     }
@@ -46,32 +55,9 @@ public class GameScreen extends ScreenAbstract implements GameInputListener {
     @Override
     public void touchDown(InputManager manager, int screenX, int screenY) {
         Gdx.app.debug(TAG, "" + screenX + " " + screenY);
-        generateBall(screenX, screenY);
+        fruitManager.addFruit(new Fruit(world, FruitType.APPLE, new Vector2(screenX/2 ,screenY/ 2)));
     }
 
-    private void generateBall(int xPos, int yPos) {
-        final int normX = xPos / 20;
-        final int normY = - yPos / 20;
-        resetBodyAndFixtureDef();
-        BODY_DEF.gravityScale = 1f;
-        BODY_DEF.position.set(normX - (WORLD_WIDTH >> 1), WORLD_HEIGHT / 3);
-        BODY_DEF.fixedRotation = true;
-        BODY_DEF.type = BodyDef.BodyType.DynamicBody;
-        Body body = world.createBody(BODY_DEF);
-        body.setUserData("BALL");
-        FIXTURE_DEF.restitution = 0.2f;
-        FIXTURE_DEF.density =1;
-        FIXTURE_DEF.filter.categoryBits = BIT_APPLE;
-        FIXTURE_DEF.filter.maskBits = -1;
-
-        CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(2f);
-        FIXTURE_DEF.shape = circleShape;
-
-        body.createFixture(FIXTURE_DEF);
-        circleShape.dispose();
-        Gdx.app.debug(TAG, "" + world.getBodyCount());
-    }
     private void generateWalls(){
         resetBodyAndFixtureDef();
 

@@ -84,6 +84,9 @@ public class Core extends Game {
 			updateTime -= 1 / FPS;
 			world.step(1 / FPS, 6, 2);
 		}
+		fruitManager.destroyFruits();
+		fruitManager.createFruits();
+
 	}
 
 	@Override
@@ -115,7 +118,6 @@ public class Core extends Game {
 		} else {
 			Gdx.app.debug(TAG, "Switching to the [" + screenType.getClass().getSimpleName() + "] instance");
 			setScreen(screen);
-			Gdx.app.debug(TAG, "");
 		}
 	}
 
