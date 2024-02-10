@@ -1,34 +1,44 @@
-package xoanaraujo.slimeit.screen;
+package xoanaraujo.roguelikegdx.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
-import xoanaraujo.slimeit.Core;
-import xoanaraujo.slimeit.animations.AnimationSet;
-import xoanaraujo.slimeit.entity.Player;
-import xoanaraujo.slimeit.input.GameInputListener;
-import xoanaraujo.slimeit.input.GameKey;
-import xoanaraujo.slimeit.input.InputManager;
+import xoanaraujo.roguelikegdx.Core;
+import xoanaraujo.roguelikegdx.animations.AnimationSet;
+import xoanaraujo.roguelikegdx.entity.Entity;
+import xoanaraujo.roguelikegdx.entity.Player;
+import xoanaraujo.roguelikegdx.entity.enemy.ChaserEntity;
+import xoanaraujo.roguelikegdx.entity.enemy.WandererEntity;
+import xoanaraujo.roguelikegdx.input.GameInputListener;
+import xoanaraujo.roguelikegdx.input.GameKey;
+import xoanaraujo.roguelikegdx.input.InputManager;
 
 import java.util.Random;
 
-import static xoanaraujo.slimeit.util.GameConst.*;
+import static xoanaraujo.roguelikegdx.util.GameConst.*;
 
 public class GameScreen extends ScreenAbstract implements GameInputListener {
     private static final String TAG = GameScreen.class.getSimpleName();
     private static final Random rd = new Random();
     private final SpriteBatch batch;
     private final ShapeRenderer shapeRenderer;
-
     private final Player player;
+    private Array<Entity> entities;
 
     public GameScreen(Core context) {
         super(context);
         batch = context.getBatch();
         shapeRenderer = context.getShapeRenderer();
         context.getInputManager().setGameListener(this);
-        player = new Player(context, new Vector2(WIDTH / 2, HEIGHT / 2), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, 150f, AnimationSet.BLUE_NINJA);
+        entities = new Array<>();
+
+        player = new Player(context, new Vector2((WIDTH - PIXELS_PER_UNIT * MOD) >> 1, (HEIGHT - PIXELS_PER_UNIT * MOD) >> 1), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, 150f, AnimationSet.GREEN_NINJA);
+        entities.add(new ChaserEntity(context, new Vector2(200, 200), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
+        entities.add(new ChaserEntity(context, new Vector2(400, 150), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
+        entities.add(new WandererEntity(context, new Vector2(800, 150), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.GRAY_NINJA));
     }
 
     @Override
@@ -38,13 +48,38 @@ public class GameScreen extends ScreenAbstract implements GameInputListener {
         shapeRenderer.begin();
         shapeRenderer.set(ShapeRenderer.ShapeType.Line);
 
-        player.render(delta);
+        // calculations
+        player.move(delta);
+        moveEntities(delta);
+        checkCollisions(delta);
+
+        // Draw result
         player.draw(batch, shapeRenderer);
+        drawEntities(delta);
 
         batch.end();
         shapeRenderer.end();
     }
 
+    private void checkCollisions(float delta) {
+        for (Entity entity : entities) {
+            if (player.getCollisionArea().collision.overlaps(entity.getCollisionArea().collision)){
+                Gdx.app.debug(TAG, "Collision");
+            }
+        }
+    }
+
+    private void moveEntities(float deltaTime){
+        for (Entity entity : entities) {
+            entity.move(deltaTime);
+        }
+    }
+
+    private void drawEntities(float deltaTime){
+        for (Entity entity : entities) {
+            entity.draw(batch, shapeRenderer);
+        }
+    }
     @Override
     public void touchDown(InputManager manager, int screenX, int screenY) {
     }

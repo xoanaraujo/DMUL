@@ -1,7 +1,4 @@
-package xoanaraujo.slimeit.util;
-
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
+package xoanaraujo.roguelikegdx.util;
 
 public class GameConst {
     public static final int WORLD_WIDTH = 320, WORLD_HEIGHT = 180;

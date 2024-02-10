@@ -1,13 +1,13 @@
-package xoanaraujo.slimeit.screen;
+package xoanaraujo.roguelikegdx.screen;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.ScreenUtils;
-import xoanaraujo.slimeit.Core;
-import xoanaraujo.slimeit.animations.AnimationSet;
-import xoanaraujo.slimeit.input.GameInputListener;
-import xoanaraujo.slimeit.input.GameKey;
-import xoanaraujo.slimeit.input.InputManager;
+import xoanaraujo.roguelikegdx.Core;
+import xoanaraujo.roguelikegdx.animations.AnimationSet;
+import xoanaraujo.roguelikegdx.input.GameInputListener;
+import xoanaraujo.roguelikegdx.input.GameKey;
+import xoanaraujo.roguelikegdx.input.InputManager;
 
 public class LoadingScreen extends ScreenAbstract implements GameInputListener {
     private final AssetManager assetManager;

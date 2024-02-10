@@ -1,12 +1,9 @@
-package xoanaraujo.slimeit;
+package xoanaraujo.roguelikegdx;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import xoanaraujo.slimeit.Core;
 
-import static xoanaraujo.slimeit.util.GameConst.*;
+import static xoanaraujo.roguelikegdx.util.GameConst.*;
 
 // Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
 public class DesktopLauncher {

@@ -1,10 +1,10 @@
-package xoanaraujo.slimeit.screen;
+package xoanaraujo.roguelikegdx.screen;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import xoanaraujo.slimeit.Core;
+import xoanaraujo.roguelikegdx.Core;
 
 public abstract class ScreenAbstract implements Screen {
     protected final Core context;

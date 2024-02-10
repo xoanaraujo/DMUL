@@ -1,7 +1,7 @@
-package xoanaraujo.slimeit.input;
+package xoanaraujo.roguelikegdx.input;
 
 import com.badlogic.gdx.InputAdapter;
-import xoanaraujo.slimeit.Core;
+import xoanaraujo.roguelikegdx.Core;
 
 public class InputManager extends InputAdapter {
     private static final String TAG = InputManager.class.getSimpleName();

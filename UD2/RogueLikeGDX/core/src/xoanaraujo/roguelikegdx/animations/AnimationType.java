@@ -1,18 +1,16 @@
-package xoanaraujo.slimeit.animations;
+package xoanaraujo.roguelikegdx.animations;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-
-import java.awt.*;
 
 public enum AnimationType {
     IDLE_DOWN(new int[]{0}, new int[]{0}, 1f, Animation.PlayMode.NORMAL),
     IDLE_UP(new int[]{0}, new int[]{1}, 1f, Animation.PlayMode.NORMAL),
     IDLE_LEFT(new int[]{0}, new int[]{2}, 1f, Animation.PlayMode.NORMAL),
     IDLE_RIGHT(new int[]{0}, new int[]{3}, 1f, Animation.PlayMode.NORMAL),
-    WALK_DOWN(new int[]{0, 1, 2, 3}, new int[]{0, 0, 0, 0}, 0.2f, Animation.PlayMode.LOOP),
-    WALK_UP(new int[]{0, 1, 2, 3}, new int[]{1, 1, 1, 1}, 0.2f, Animation.PlayMode.LOOP),
-    WALK_LEFT(new int[]{0, 1, 2, 3}, new int[]{2, 2, 2, 2}, 0.2f, Animation.PlayMode.LOOP),
-    WALK_RIGHT(new int[]{0, 1, 2, 3}, new int[]{3, 3, 3, 3}, 0.2f, Animation.PlayMode.LOOP),
+    WALK_DOWN(new int[]{0, 1, 2, 3}, new int[]{0, 0, 0, 0}, 0.15f, Animation.PlayMode.LOOP),
+    WALK_UP(new int[]{0, 1, 2, 3}, new int[]{1, 1, 1, 1}, 0.15f, Animation.PlayMode.LOOP),
+    WALK_LEFT(new int[]{0, 1, 2, 3}, new int[]{2, 2, 2, 2}, 0.15f, Animation.PlayMode.LOOP),
+    WALK_RIGHT(new int[]{0, 1, 2, 3}, new int[]{3, 3, 3, 3}, 0.15f, Animation.PlayMode.LOOP),
     ATTACK_DOWN(new int[]{4}, new int[]{0}, 0.2f, Animation.PlayMode.NORMAL),
     ATTACK_UP(new int[]{4}, new int[]{1}, 0.2f, Animation.PlayMode.NORMAL),
     ATTACK_LEFT(new int[]{4}, new int[]{2}, 0.2f, Animation.PlayMode.NORMAL),

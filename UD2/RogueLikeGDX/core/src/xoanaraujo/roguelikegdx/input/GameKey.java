@@ -1,4 +1,4 @@
-package xoanaraujo.slimeit.input;
+package xoanaraujo.roguelikegdx.input;
 
 import static com.badlogic.gdx.Input.Keys;
 

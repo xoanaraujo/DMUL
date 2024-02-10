@@ -1,4 +1,4 @@
-package xoanaraujo.slimeit.screen;
+package xoanaraujo.roguelikegdx.screen;
 
 import com.badlogic.gdx.Screen;
 

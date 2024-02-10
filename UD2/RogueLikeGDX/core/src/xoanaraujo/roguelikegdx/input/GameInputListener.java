@@ -1,4 +1,4 @@
-package xoanaraujo.slimeit.input;
+package xoanaraujo.roguelikegdx.input;
 
 public interface GameInputListener {
     void touchDown(InputManager manager, int screenX, int screenY);

@@ -1,24 +1,21 @@
-package xoanaraujo.slimeit;
+package xoanaraujo.roguelikegdx;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import xoanaraujo.slimeit.input.InputManager;
-import xoanaraujo.slimeit.screen.ScreenAbstract;
-import xoanaraujo.slimeit.screen.ScreenType;
+import xoanaraujo.roguelikegdx.input.InputManager;
+import xoanaraujo.roguelikegdx.screen.ScreenType;
 
 import java.util.EnumMap;
 
-import static xoanaraujo.slimeit.util.GameConst.*;
+import static xoanaraujo.roguelikegdx.util.GameConst.*;
 
 public class Core extends Game {
 	private static final String TAG = Core.class.getSimpleName();
