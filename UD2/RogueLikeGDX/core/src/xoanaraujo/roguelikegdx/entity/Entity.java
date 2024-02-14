@@ -49,19 +49,6 @@ public abstract class Entity {
         currentAnimation = animationCache.get(AnimationType.IDLE_DOWN);
     }
 
-    public abstract float getVelocity();
-    public abstract CollisionType getCollisionType();
-
-    private Array<Sprite> getKeyFrames(TextureRegion[][] textureRegions, int[] rows, int[] cols) {
-        Array<Sprite> keyFrames = new Array<>();
-        for (int i = 0; i < rows.length; i++) {
-            final Sprite sprite = new Sprite(textureRegions[rows[i]][cols[i]]);
-            sprite.setOriginCenter();
-            keyFrames.add(sprite);
-        }
-        return keyFrames;
-    }
-
     public void move(float deltaTime){
         updateTime += deltaTime;
         if (direction.equals(Vector2.Zero) ){ // && !currentAnimation.equals(animationCache.get(AnimationType.IDLE_DOWN))
@@ -87,8 +74,22 @@ public abstract class Entity {
         keyFrame.setBounds(position.x, position.y, width, height);
         collisionArea.collision.setPosition(position.x + 12f, position.y + 4);
         keyFrame.draw(batch);
-        shapeRenderer.rect(collisionArea.collision.x, collisionArea.collision.y, collisionArea.collision.width, collisionArea.collision.height);
+        // shapeRenderer.rect(collisionArea.collision.x, collisionArea.collision.y, collisionArea.collision.width, collisionArea.collision.height);
     }
+
+    private Array<Sprite> getKeyFrames(TextureRegion[][] textureRegions, int[] rows, int[] cols) {
+        Array<Sprite> keyFrames = new Array<>();
+        for (int i = 0; i < rows.length; i++) {
+            final Sprite sprite = new Sprite(textureRegions[rows[i]][cols[i]]);
+            sprite.setOriginCenter();
+            keyFrames.add(sprite);
+        }
+        return keyFrames;
+    }
+
+
+    public abstract float getVelocity();
+    public abstract CollisionType getCollisionType();
 
     public Vector2 getPosition() {
         return position;
@@ -129,4 +130,5 @@ public abstract class Entity {
     public void setDirectionChanged(boolean directionChanged) {
         this.directionChanged = directionChanged;
     }
+
 }

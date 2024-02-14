@@ -2,11 +2,20 @@ package xoanaraujo.roguelikegdx;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.SkinLoader;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Colors;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.badlogic.gdx.utils.I18NBundle;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -26,24 +35,32 @@ public class Core extends Game {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
 	private ShapeRenderer shapeRenderer;
+	private Stage stage;
+	private Skin skin;
+	private I18NBundle i18NBundle;
 
 	@Override
 	public void create () {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		screens = new EnumMap<>(ScreenType.class);
+
 		assetManager = new AssetManager();
+
+		batch = new SpriteBatch();
+		shapeRenderer = new ShapeRenderer();
+		shapeRenderer.setColor(Color.RED);
+		shapeRenderer.setAutoShapeType(true);
+
+
 		camera = new OrthographicCamera();
 		viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+		initializeSkin();
+		stage = new Stage(new FitViewport(WIDTH, HEIGHT), batch);
 
 		// Input manager
 		inputManager = new InputManager(this);
 		Gdx.input.setInputProcessor(inputManager);
 
-		// Graphics render related
-		batch = new SpriteBatch();
-		shapeRenderer = new ShapeRenderer();
-		shapeRenderer.setColor(Color.RED);
-		shapeRenderer.setAutoShapeType(true);
 		switchScreen(ScreenType.LOADING);
 	}
 
@@ -77,6 +94,38 @@ public class Core extends Game {
 		}
 	}
 
+	private void initializeSkin() {
+		// Setup colors to be used in our font
+		Colors.put("debug", new Color(1f, 0f, 0f, 3));
+
+		// Generate ttf bitmaps
+		final ObjectMap<String, Object> resources = new ObjectMap<>();
+
+		final FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("ui/font/default.ttf"));
+		final FreeTypeFontGenerator.FreeTypeFontParameter fontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+		fontParameter.minFilter = Texture.TextureFilter.Linear;
+		fontParameter.magFilter = Texture.TextureFilter.Linear;
+		final int[] sizesToCreate = {16, 20, 26, 32};
+		for (int size : sizesToCreate) {
+			fontParameter.size = size;
+			BitmapFont bitmapFont = fontGenerator.generateFont(fontParameter);
+			bitmapFont.getData().markupEnabled = true;
+
+			resources.put("font_" + size, bitmapFont);
+			fontGenerator.generateFont(fontParameter);
+		}
+		fontGenerator.dispose();
+
+		// load skin
+		final SkinLoader.SkinParameter skinParameter = new SkinLoader.SkinParameter("ui/hud/hud.atlas", resources);
+		assetManager.load("ui/hud/hud.json", Skin.class, skinParameter);
+		assetManager.load("ui/strings", I18NBundle.class);
+		assetManager.finishLoading();
+		skin = assetManager.get("ui/hud/hud.json", Skin.class);
+		i18NBundle = assetManager.get("ui/strings", I18NBundle.class);
+
+	}
+
 	public OrthographicCamera getCamera() {
 		return camera;
 	}
@@ -99,5 +148,17 @@ public class Core extends Game {
 
 	public ShapeRenderer getShapeRenderer() {
 		return shapeRenderer;
+	}
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public Skin getSkin() {
+		return skin;
+	}
+
+	public I18NBundle getI18NBundle() {
+		return i18NBundle;
 	}
 }

@@ -24,7 +24,7 @@ public class WandererEntity extends Entity {
 
     @Override
     public CollisionType getCollisionType() {
-        return CollisionType.WANDERER;
+        return CollisionType.ENEMY;
     }
 
     @Override

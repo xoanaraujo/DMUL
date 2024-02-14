@@ -8,8 +8,8 @@ import static xoanaraujo.roguelikegdx.util.GameConst.*;
 
 public enum CollisionType {
     PLAYER (new CollisionArea(new Rectangle(0, 0,MOD * PIXELS_PER_UNIT * 0.6f, MOD * PIXELS_PER_UNIT * 0.6f), false)),
-    CHASER (new CollisionArea(new Rectangle(0, 0,MOD * PIXELS_PER_UNIT * 0.6f, MOD * PIXELS_PER_UNIT * 0.6f), false)),
-    WANDERER (new CollisionArea(new Rectangle(0, 0,MOD * PIXELS_PER_UNIT * 0.6f, MOD * PIXELS_PER_UNIT * 0.6f), false));
+    ENEMY (new CollisionArea(new Rectangle(0, 0,MOD * PIXELS_PER_UNIT * 0.6f, MOD * PIXELS_PER_UNIT * 0.6f), false)),
+    WALL(new CollisionArea(new Rectangle(), false));
     private final CollisionArea collisionArea;
 
     CollisionType(CollisionArea collisionArea) {

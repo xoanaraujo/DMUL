@@ -36,8 +36,10 @@ public class GameScreen extends ScreenAbstract implements GameInputListener {
         entities = new Array<>();
 
         player = new Player(context, new Vector2((WIDTH - PIXELS_PER_UNIT * MOD) >> 1, (HEIGHT - PIXELS_PER_UNIT * MOD) >> 1), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, 150f, AnimationSet.GREEN_NINJA);
-        entities.add(new ChaserEntity(context, new Vector2(200, 200), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
-        entities.add(new ChaserEntity(context, new Vector2(400, 150), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
+        entities.add(new ChaserEntity(context, new Vector2(0, HEIGHT - PIXELS_PER_UNIT * MOD), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
+        entities.add(new ChaserEntity(context, new Vector2(0, 0), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
+        entities.add(new ChaserEntity(context, new Vector2(WIDTH - PIXELS_PER_UNIT * MOD, 0), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
+        entities.add(new ChaserEntity(context, new Vector2(WIDTH - PIXELS_PER_UNIT * MOD, HEIGHT -PIXELS_PER_UNIT * MOD), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
         entities.add(new WandererEntity(context, new Vector2(800, 150), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.GRAY_NINJA));
     }
 
@@ -45,8 +47,8 @@ public class GameScreen extends ScreenAbstract implements GameInputListener {
     public void render(float delta) {
         ScreenUtils.clear(0.5f, 0.8f, 0.8f, 1);
         batch.begin();
-        shapeRenderer.begin();
-        shapeRenderer.set(ShapeRenderer.ShapeType.Line);
+        // shapeRenderer.begin();
+        // shapeRenderer.set(ShapeRenderer.ShapeType.Line);
 
         // calculations
         player.move(delta);

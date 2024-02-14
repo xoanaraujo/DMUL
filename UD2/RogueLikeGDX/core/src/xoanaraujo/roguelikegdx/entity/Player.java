@@ -30,6 +30,4 @@ public class Player extends Entity{
         position.x += direction.x * velocity * deltaTime;
         position.y += direction.y * velocity * deltaTime;
     }
-
-
 }
