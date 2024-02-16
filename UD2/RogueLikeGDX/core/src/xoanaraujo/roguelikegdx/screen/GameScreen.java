@@ -28,6 +28,8 @@ public class GameScreen extends ScreenAbstract implements GameInputListener {
     private final Player player;
     private Array<Entity> entities;
 
+    private static final boolean DEBUG = false;
+
     public GameScreen(Core context) {
         super(context);
         batch = context.getBatch();
@@ -36,52 +38,66 @@ public class GameScreen extends ScreenAbstract implements GameInputListener {
         entities = new Array<>();
 
         player = new Player(context, new Vector2((WIDTH - PIXELS_PER_UNIT * MOD) >> 1, (HEIGHT - PIXELS_PER_UNIT * MOD) >> 1), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, 150f, AnimationSet.GREEN_NINJA);
+        entities.add(new WandererEntity(context, new Vector2(800, 150), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.GRAY_NINJA));
         entities.add(new ChaserEntity(context, new Vector2(0, HEIGHT - PIXELS_PER_UNIT * MOD), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
         entities.add(new ChaserEntity(context, new Vector2(0, 0), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
         entities.add(new ChaserEntity(context, new Vector2(WIDTH - PIXELS_PER_UNIT * MOD, 0), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
-        entities.add(new ChaserEntity(context, new Vector2(WIDTH - PIXELS_PER_UNIT * MOD, HEIGHT -PIXELS_PER_UNIT * MOD), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
-        entities.add(new WandererEntity(context, new Vector2(800, 150), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.GRAY_NINJA));
+        entities.add(new ChaserEntity(context, new Vector2(WIDTH - PIXELS_PER_UNIT * MOD, HEIGHT - PIXELS_PER_UNIT * MOD), new Vector2(0, 0), PIXELS_PER_UNIT * MOD, PIXELS_PER_UNIT * MOD, AnimationSet.BLUE_NINJA, player));
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0.5f, 0.8f, 0.8f, 1);
         batch.begin();
-        // shapeRenderer.begin();
-        // shapeRenderer.set(ShapeRenderer.ShapeType.Line);
+        if (DEBUG) {
+            shapeRenderer.begin();
+            shapeRenderer.set(ShapeRenderer.ShapeType.Line);
+        }
 
         // calculations
         player.move(delta);
         moveEntities(delta);
-        checkCollisions(delta);
+        checkCollisions();
 
         // Draw result
-        player.draw(batch, shapeRenderer);
-        drawEntities(delta);
-
+        if (DEBUG) {
+            player.draw(batch, shapeRenderer);
+        } else {
+            player.draw(batch);
+        }
+        drawEntities(delta, DEBUG);
+        if (DEBUG) {
+            shapeRenderer.end();
+        }
         batch.end();
-        shapeRenderer.end();
     }
 
-    private void checkCollisions(float delta) {
+    private void checkCollisions() {
         for (Entity entity : entities) {
-            if (player.getCollisionArea().collision.overlaps(entity.getCollisionArea().collision)){
-                Gdx.app.debug(TAG, "Collision");
+            if (player.getCollisionArea().collision.overlaps(entity.getCollisionArea().collision)) {
+                Gdx.app.debug(TAG, "Collision" + player.getCollisionType() + " " + entity.getCollisionType());
             }
         }
     }
 
-    private void moveEntities(float deltaTime){
+    private void moveEntities(float deltaTime) {
         for (Entity entity : entities) {
             entity.move(deltaTime);
         }
     }
 
-    private void drawEntities(float deltaTime){
-        for (Entity entity : entities) {
-            entity.draw(batch, shapeRenderer);
+    private void drawEntities(float deltaTime, boolean debug) {
+        if (debug) {
+            for (Entity entity : entities) {
+                entity.draw(batch, shapeRenderer);
+            }
+        } else {
+            for (Entity entity : entities) {
+                entity.draw(batch);
+            }
         }
     }
+
     @Override
     public void touchDown(InputManager manager, int screenX, int screenY) {
     }

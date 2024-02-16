@@ -51,19 +51,19 @@ public abstract class Entity {
 
     public void move(float deltaTime){
         updateTime += deltaTime;
-        if (direction.equals(Vector2.Zero) ){ // && !currentAnimation.equals(animationCache.get(AnimationType.IDLE_DOWN))
+        if (direction.equals(Vector2.Zero) ){
             currentAnimation = animationCache.get(AnimationType.IDLE_DOWN);
             directionChanged = false;
-        } else if (direction.x > 0 ){ //&& !currentAnimation.equals(animationCache.get(AnimationType.WALK_RIGHT))
+        } else if (direction.x > 0 ){
             currentAnimation = animationCache.get(AnimationType.WALK_RIGHT);
             directionChanged = false;
-        } else if (direction.x < 0 ){ // && !currentAnimation.equals(animationCache.get(AnimationType.WALK_LEFT))
+        } else if (direction.x < 0 ){
             currentAnimation = animationCache.get(AnimationType.WALK_LEFT);
             directionChanged = false;
-        } else if (direction.y > 0 ){ // && !currentAnimation.equals(animationCache.get(AnimationType.WALK_UP))
+        } else if (direction.y > 0 ){
             currentAnimation = animationCache.get(AnimationType.WALK_UP);
             directionChanged = false;
-        } else if(direction.y <= 0 ){ // && !currentAnimation.equals(animationCache.get(AnimationType.WALK_DOWN))
+        } else if(direction.y <= 0 ){
             currentAnimation = animationCache.get(AnimationType.WALK_DOWN);
             directionChanged = false;
         }
@@ -74,7 +74,14 @@ public abstract class Entity {
         keyFrame.setBounds(position.x, position.y, width, height);
         collisionArea.collision.setPosition(position.x + 12f, position.y + 4);
         keyFrame.draw(batch);
-        // shapeRenderer.rect(collisionArea.collision.x, collisionArea.collision.y, collisionArea.collision.width, collisionArea.collision.height);
+        shapeRenderer.rect(collisionArea.collision.x, collisionArea.collision.y, collisionArea.collision.width, collisionArea.collision.height);
+    }
+
+    public void draw(SpriteBatch batch){
+        final Sprite keyFrame = currentAnimation.getKeyFrame(updateTime);
+        keyFrame.setBounds(position.x, position.y, width, height);
+        collisionArea.collision.setPosition(position.x + 12f, position.y + 4);
+        keyFrame.draw(batch);
     }
 
     private Array<Sprite> getKeyFrames(TextureRegion[][] textureRegions, int[] rows, int[] cols) {
