@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher {
     @Override
     public void afterTextChanged(Editable editable) {
         String DNI = etxtDNI.getText().toString();
-        if (DNI.length() == 9 && modoRegistro == true) {
+        if (DNI.length() == 9 && modoRegistro) {
             if (Recursos.esNIF(DNI)) {
                 etxtDNI.setTextColor(Color.GREEN);
             } else {

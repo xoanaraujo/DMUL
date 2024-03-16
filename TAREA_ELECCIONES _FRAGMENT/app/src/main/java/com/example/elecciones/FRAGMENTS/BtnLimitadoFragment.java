@@ -35,7 +35,7 @@ public class BtnLimitadoFragment extends Fragment {
     private int contador;
 
     private View.OnClickListener listenerClick;
-    private ComunicationFragments zcomunicationInterface;
+    private ComunicationFragments comunicationInterface;
 
     public BtnLimitadoFragment() {
         // Required empty public constructor
