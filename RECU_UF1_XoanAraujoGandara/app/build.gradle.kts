@@ -39,7 +39,8 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
+    implementation (libs.material)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.ext.junit)
+    testImplementation(libs.junit)
 }

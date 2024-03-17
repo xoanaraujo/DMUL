@@ -32,6 +32,26 @@ public final class CRUD {
         return alumno;
     }
 
+    public static Alumno selectAlumnoByDni(SQLiteDatabase db, String dni) {
+        Alumno alumno = null;
+
+        String select = "SELECT * FROM ALUMNOS WHERE DNI = ?";
+        Cursor cursor = db.rawQuery(select, new String[]{String.valueOf(dni)});
+
+        if (cursor.moveToFirst()){
+            int indexId = cursor.getColumnIndex("ID");
+            int indexDni = cursor.getColumnIndex("DNI");
+            int indexNombre = cursor.getColumnIndex("NOMBRE");
+            int indexIdGrupo = cursor.getColumnIndex("IDGRUPO");
+            alumno = new Alumno(
+                    cursor.getInt(indexId),
+                    cursor.getString(indexDni),
+                    cursor.getString(indexNombre),
+                    cursor.getInt(indexIdGrupo));
+        }
+        return alumno;
+    }
+
     public static Grupo[] selectGrupos(SQLiteDatabase db) {
         ArrayList<Grupo> grupos = new ArrayList<>();
         String select = "SELECT * FROM GRUPOS";

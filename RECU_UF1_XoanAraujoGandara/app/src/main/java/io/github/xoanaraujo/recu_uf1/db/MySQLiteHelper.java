@@ -8,10 +8,19 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MySQLiteHelper extends SQLiteOpenHelper {
+import io.github.xoanaraujo.recu_uf1.model.Grupo;
 
+public class MySQLiteHelper extends SQLiteOpenHelper {
+    private static final Grupo[] grupos = new Grupo[] {
+            new Grupo("DAM"),
+            new Grupo("DAW"),
+            new Grupo("ASIR"),
+            new Grupo("SMR"),
+            new Grupo("1 ESO")
+    };
     public static final String DB_NAME = "dbRecu";
     public static final int VERSION = 1;
     private final ContentValues cv;
@@ -37,11 +46,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         String insertGrupos = "INSERT INTO GRUPOS (NOMBRE) VALUES (?)";
         SQLiteStatement stmInsertGrupos = db.compileStatement(insertGrupos);
-        for (int i = 0; i < 10; i++) {
-            stmInsertGrupos.bindString(1, "Grupo " + (i + 1));
+        for (int i = 0; i < grupos.length; i++) {
+            stmInsertGrupos.bindString(1, grupos[i].getNombre());
             stmInsertGrupos.executeInsert();
         }
-        String insertAlumnos = "INSERT INTO ALUMNOS (DNI, NOMBRE, IDGRUPO) VALUES (?, ?, ?)";
+        /*String insertAlumnos = "INSERT INTO ALUMNOS (DNI, NOMBRE, IDGRUPO) VALUES (?, ?, ?)";
         SQLiteStatement stmInsertAlumnos = db.compileStatement(insertAlumnos);
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < (i +1); j++) {
@@ -51,6 +60,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 stmInsertAlumnos.executeInsert();
             }
         }
+         */
     }
 
     @Override

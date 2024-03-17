@@ -24,7 +24,7 @@ public class ManagementActivity extends AppCompatActivity {
 
     private Spinner spGrupos;
     private ListView lvAlumnos;
-    private Button btnAddGrupo, btnAddAlumno;
+    private Button btnAddAlumno;
     private ImageButton iBtnAtras;
     private Grupo[] grupos;
     private Alumno[] alumnos;
@@ -37,7 +37,6 @@ public class ManagementActivity extends AppCompatActivity {
         spGrupos = findViewById(R.id.spGrupos);
         lvAlumnos = findViewById(R.id.lvAlumnos);
         btnAddAlumno = findViewById(R.id.btnActManagementAddAlumno);
-        btnAddGrupo = findViewById(R.id.btnActManagementAddGrupo);
         iBtnAtras = findViewById(R.id.iBtnActManagementAtras);
         MySQLiteHelper sqLiteHelper = new MySQLiteHelper(this);
         SQLiteDatabase db = sqLiteHelper.getReadableDatabase();
@@ -87,10 +86,10 @@ public class ManagementActivity extends AppCompatActivity {
 
     private void updateAlumnos(SQLiteDatabase db) {
         alumnos = CRUD.selectAlumnosByIdGrupo(db, getSelectedGrupo().getId());
+
         lvAlumnos.setAdapter(new ArrayAdapterAlumnos(this, alumnos));
     }
-
     private Grupo getSelectedGrupo() {
-        return grupos[spGrupos.getSelectedItemPosition()];
+        return grupos[spGrupos.getSelectedItemPosition() == -1 ? 0 : spGrupos.getSelectedItemPosition()];
     }
 }
