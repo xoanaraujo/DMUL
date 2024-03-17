@@ -117,4 +117,20 @@ public final class CRUD {
         }
         return -1;
     }
+
+    public static Grupo selectGrupoById(SQLiteDatabase db, int id) {
+        Grupo grupo = null;
+
+        String select = "SELECT * FROM GRUPOS WHERE ID = ?";
+        Cursor cursor = db.rawQuery(select, new String[]{String.valueOf(id)});
+
+        if (cursor.moveToFirst()){
+            int indexId = cursor.getColumnIndex("ID");
+            int indexNombre = cursor.getColumnIndex("NOMBRE");
+            grupo = new Grupo(
+                    cursor.getInt(indexId),
+                    cursor.getString(indexNombre));
+        }
+        return grupo;
+    }
 }

@@ -11,12 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import io.github.xoanaraujo.recu_uf1.R;
 import io.github.xoanaraujo.recu_uf1.controller.fragment.RefreshFragment;
+import io.github.xoanaraujo.recu_uf1.db.CRUD;
+import io.github.xoanaraujo.recu_uf1.db.MySQLiteHelper;
+import io.github.xoanaraujo.recu_uf1.model.Grupo;
 import io.github.xoanaraujo.recu_uf1.util.AccionType;
 import io.github.xoanaraujo.recu_uf1.util.Utils;
 
 public class MainActivity extends AppCompatActivity implements RefreshFragment.RefreshListener {
 
-    private TextView tvTitle, tvAccion, tvAlumno;
+    private TextView tvTitle, tvAccion, tvIdAlumno, tvDniAlumno, tvNombreAlumno, tvIdGrupoAlumno;
     private RefreshFragment refreshFragment;
     private Button btnManagement;
     @Override
@@ -27,14 +30,20 @@ public class MainActivity extends AppCompatActivity implements RefreshFragment.R
         btnManagement = findViewById(R.id.btnManagement);
         tvTitle = findViewById(R.id.tvActMainTitle);
         tvAccion = findViewById(R.id.tvActMainAccion);
-        tvAlumno = findViewById(R.id.tvActMainAlumno);
+        tvIdAlumno = findViewById(R.id.tvActMainIdAlumno);
+        tvDniAlumno = findViewById(R.id.tvActMainDniAlumno);
+        tvNombreAlumno = findViewById(R.id.tvActMainNombreAlumno);
+        tvIdGrupoAlumno = findViewById(R.id.tvActMainIdGrupoAlumno);
 
         refreshFragment = new RefreshFragment(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, refreshFragment).commit();
 
         tvTitle.setText("");
         tvAccion.setText("");
-        tvAlumno.setText("");
+        tvIdAlumno.setText("");
+        tvDniAlumno.setText("");
+        tvNombreAlumno.setText("");
+        tvIdGrupoAlumno.setText("");
 
         btnManagement.setOnClickListener(e -> loadActivity(ManagementActivity.class));
     }
@@ -71,7 +80,13 @@ public class MainActivity extends AppCompatActivity implements RefreshFragment.R
                     tvAccion.setTextColor(Color.RED);
                 } break;
             }
-            tvAlumno.setText(nombre);
+            tvIdAlumno.setText("[" + id + "]");
+            tvDniAlumno.setText(dni);
+            tvNombreAlumno.setText(nombre);
+
+            MySQLiteHelper sqLiteHelper = new MySQLiteHelper(this);
+            Grupo grupo = CRUD.selectGrupoById(sqLiteHelper.getReadableDatabase(), idGrupo);
+            tvIdGrupoAlumno.setText(grupo == null ? "" : grupo.getNombre());
         } else {
             Utils.launchToast(this, "No hay acciones registradas");
         }

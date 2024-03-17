@@ -13,6 +13,9 @@
         android:theme="@style/Theme.RECU_UF1_XoanAraujoGandara"
         tools:targetApi="31">
         <activity
+            android:name=".controller.activity.GrupoActivity"
+            android:exported="false" />
+        <activity
             android:name=".controller.activity.AlumnoActivity"
             android:exported="false" />
         <activity
