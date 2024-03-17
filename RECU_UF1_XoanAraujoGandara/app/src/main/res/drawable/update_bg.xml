@@ -5,5 +5,5 @@
         android:width="48dp"
         android:height="48dp"/>
     <corners android:radius="10dp" />
-    <solid android:color="#1E88E5" />
+    <solid android:color="@color/colorUpdateButton" />
 </shape>

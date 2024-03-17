@@ -2,24 +2,18 @@ package io.github.xoanaraujo.recu_uf1.controller.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import io.github.xoanaraujo.recu_uf1.R;
 import io.github.xoanaraujo.recu_uf1.controller.adapter.ArrayAdapterGrupos;
@@ -36,7 +30,7 @@ public class AlumnoActivity extends AppCompatActivity {
     private TextView tvId;
     private EditText etDni, etNombre;
     private Spinner spGrupos;
-    private Button btnGuardar, btnBorrar;
+    private ImageButton iBtnGuardar, iBtnBorrar;
     private ImageButton iBtnAtras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +43,8 @@ public class AlumnoActivity extends AppCompatActivity {
         etDni = findViewById(R.id.etDniAlumno);
         etNombre = findViewById(R.id.etNombreAlumno);
         spGrupos = findViewById(R.id.spGruposAlumno);
-        btnGuardar = findViewById(R.id.btnActAlumnoGuardar);
-        btnBorrar = findViewById(R.id.btnActAlumnoBorrar);
+        iBtnGuardar = findViewById(R.id.iBtnActAlumnoSave);
+        iBtnBorrar = findViewById(R.id.iBtnActGrupoDelete);
         iBtnAtras = findViewById(R.id.iBtnActAlumnoAtras);
 
         spGrupos.setAdapter(new ArrayAdapterGrupos(this, CRUD.selectGrupos(sqLiteHelper.getReadableDatabase())));
@@ -61,13 +55,13 @@ public class AlumnoActivity extends AppCompatActivity {
             etDni.setText(alumno.getDni());
             etNombre.setText(alumno.getNombre());
             spGrupos.setSelection(alumno.getIdGrupo() - 1);
-            btnBorrar.setOnClickListener(e -> borrar());
+            iBtnBorrar.setOnClickListener(e -> borrar());
         } else if(intent.hasExtra("idGrupo")) {
             alumno = new Alumno();
             tvId.setText("Nuevo");
             spGrupos.setSelection(intent.getIntExtra("idGrupo", 1) - 1);
-            btnBorrar.setVisibility(View.INVISIBLE);
-            btnBorrar.setActivated(false);
+            iBtnBorrar.setVisibility(View.INVISIBLE);
+            iBtnBorrar.setActivated(false);
         }
         etDni.addTextChangedListener(new TextWatcher() {
             @Override
@@ -89,7 +83,7 @@ public class AlumnoActivity extends AppCompatActivity {
                 }
             }
         });
-        btnGuardar.setOnClickListener(e -> guardar());
+        iBtnGuardar.setOnClickListener(e -> guardar());
         iBtnAtras.setOnClickListener(e -> launchManagementActivity());
     }
 
@@ -139,7 +133,7 @@ public class AlumnoActivity extends AppCompatActivity {
 
     private void savePrefs(AccionType accionType){
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
-        preferences.edit()
+        preferences.edit().clear()
                 .putInt("id", alumno.getId())
                 .putString("dni", alumno.getDni())
                 .putString("nombre", alumno.getNombre())

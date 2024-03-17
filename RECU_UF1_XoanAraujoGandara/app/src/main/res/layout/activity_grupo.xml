@@ -7,4 +7,63 @@
     android:layout_height="match_parent"
     tools:context=".controller.activity.GrupoActivity">
 
+    <ImageButton
+        android:id="@+id/iBtnActGrupoSave"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/insert_bg"
+        app:layout_constraintEnd_toEndOf="@+id/etActGrupoNombre"
+        app:layout_constraintTop_toBottomOf="@+id/etActGrupoNombre"
+        app:srcCompat="@drawable/save_32"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/iBtnActGrupoDelete"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/delete_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/iBtnActGrupoSave"
+        app:layout_constraintEnd_toStartOf="@+id/iBtnActGrupoSave"
+        app:layout_constraintTop_toTopOf="@+id/iBtnActGrupoSave"
+        app:srcCompat="@drawable/remove_32"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/etActGrupoNombre"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="64dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvActGrupoIdGrupo"
+        app:layout_constraintTop_toBottomOf="@+id/tvActGrupoIdGrupo" />
+
+    <TextView
+        android:id="@+id/tvActGrupoIdGrupo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="64dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iBtnActGrupoAtras"
+        tools:text="1" />
+
+    <ImageButton
+        android:id="@+id/iBtnActGrupoAtras"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_arrow_back_48"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,13 @@
 package io.github.xoanaraujo.recu_uf1.model;
 
-public class Grupo {
+import java.io.Serializable;
+
+public class Grupo implements Serializable {
     private int id;
     private String nombre;
+
+    public Grupo() {
+    }
 
     public Grupo(int id, String nombre) {
         this.id = id;

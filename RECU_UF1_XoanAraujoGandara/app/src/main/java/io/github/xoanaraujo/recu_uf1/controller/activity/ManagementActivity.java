@@ -24,7 +24,7 @@ public class ManagementActivity extends AppCompatActivity {
 
     private Spinner spGrupos;
     private ListView lvAlumnos;
-    private Button btnAddAlumno;
+    private ImageButton iBtnAddAlumno, iBtnAddGrupo, iBtnEditGrupo;
     private ImageButton iBtnAtras;
     private Grupo[] grupos;
     private Alumno[] alumnos;
@@ -36,7 +36,9 @@ public class ManagementActivity extends AppCompatActivity {
 
         spGrupos = findViewById(R.id.spGrupos);
         lvAlumnos = findViewById(R.id.lvAlumnos);
-        btnAddAlumno = findViewById(R.id.btnActManagementAddAlumno);
+        iBtnAddAlumno = findViewById(R.id.iBtnActManagementAddAlumno);
+        iBtnAddGrupo = findViewById(R.id.iBtnActManagementAddGrupo);
+        iBtnEditGrupo = findViewById(R.id.iBtnActManagementEditGrupo);
         iBtnAtras = findViewById(R.id.iBtnActManagementAtras);
         MySQLiteHelper sqLiteHelper = new MySQLiteHelper(this);
         SQLiteDatabase db = sqLiteHelper.getReadableDatabase();
@@ -44,22 +46,46 @@ public class ManagementActivity extends AppCompatActivity {
         updateGrupos(db);
         Intent intent = getIntent();
         if(intent.hasExtra("idGrupo")){
-            spGrupos.setSelection((intent.getIntExtra("idGrupo", 1)) - 1);
+
+            int idGrupo = intent.getIntExtra("idGrupo", 1);
+            int pos = getPosicionGrupoById(idGrupo);
+            spGrupos.setSelection(pos);
+            updateAlumnos(db, idGrupo);
         }
-        updateAlumnos(db);
 
         spGrupos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                updateAlumnos(db);
+                updateAlumnos(db, grupos[position].getId());
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         lvAlumnos.setOnItemClickListener((parent, view, position, id) -> launchAlumnoActivity(alumnos[position]));
 
-        btnAddAlumno.setOnClickListener(e -> launchAlumnoActivity());
+        iBtnAddAlumno.setOnClickListener(e -> launchAlumnoActivity());
+        iBtnAddGrupo.setOnClickListener(e -> launchGrupoActivity());
+        iBtnEditGrupo.setOnClickListener(e -> launchGrupoActivity(grupos[spGrupos.getSelectedItemPosition()]));
         iBtnAtras.setOnClickListener(e -> launchMainActivity());
+    }
+
+    private int getPosicionGrupoById(int idGrupo) {
+        int pos = -1;
+        for (int i = 0; pos == -1 && i < grupos.length; i++) {
+            if (grupos[i].getId() == idGrupo)
+                pos = i;
+        }
+        return pos == -1 ? 0 : pos;
+    }
+
+    private void launchGrupoActivity() {
+        Intent intent = new Intent(this, GrupoActivity.class);
+        startActivity(intent);
+    }
+    private void launchGrupoActivity(Grupo grupo) {
+        Intent intent = new Intent(this, GrupoActivity.class);
+        intent.putExtra("grupo", grupo);
+        startActivity(intent);
     }
 
     private void launchMainActivity() {
@@ -84,12 +110,9 @@ public class ManagementActivity extends AppCompatActivity {
         spGrupos.setAdapter(new ArrayAdapterGrupos(this, grupos));
     }
 
-    private void updateAlumnos(SQLiteDatabase db) {
-        alumnos = CRUD.selectAlumnosByIdGrupo(db, getSelectedGrupo().getId());
+    private void updateAlumnos(SQLiteDatabase db, int grupoId) {
+        alumnos = CRUD.selectAlumnosByIdGrupo(db, grupoId);
 
         lvAlumnos.setAdapter(new ArrayAdapterAlumnos(this, alumnos));
-    }
-    private Grupo getSelectedGrupo() {
-        return grupos[spGrupos.getSelectedItemPosition() == -1 ? 0 : spGrupos.getSelectedItemPosition()];
     }
 }

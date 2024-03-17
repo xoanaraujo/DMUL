@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="64dp"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iBtnActAlumnoAtras"
         tools:text="1" />
 
     <EditText
@@ -53,53 +53,38 @@
         app:layout_constraintStart_toStartOf="@+id/tvAcIdAlumno"
         app:layout_constraintTop_toBottomOf="@+id/etNombreAlumno" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/etDniAlumno"
-        app:layout_constraintStart_toStartOf="@+id/tvAcIdAlumno"
-        app:layout_constraintTop_toBottomOf="@+id/spGruposAlumno">
-
-        <Button
-            android:id="@+id/btnActAlumnoBorrar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="Borrar"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:backgroundTint="#B71C1C"
-            app:cornerRadius="5dp" />
-
-        <Button
-            android:id="@+id/btnActAlumnoGuardar"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="Guardar"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:backgroundTint="#1B5E20"
-            app:cornerRadius="5dp" />
-    </LinearLayout>
-
     <ImageButton
         android:id="@+id/iBtnActAlumnoAtras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_arrow_back_48" />
+        app:srcCompat="@drawable/baseline_arrow_back_48"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/iBtnActGrupoDelete"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/delete_bg"
+        app:layout_constraintEnd_toStartOf="@+id/iBtnActAlumnoSave"
+        app:layout_constraintTop_toTopOf="@+id/iBtnActAlumnoSave"
+        app:srcCompat="@drawable/remove_32"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/iBtnActAlumnoSave"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/insert_bg"
+        app:layout_constraintEnd_toEndOf="@+id/etDniAlumno"
+        app:layout_constraintTop_toBottomOf="@+id/spGruposAlumno"
+        app:srcCompat="@drawable/save_32"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -109,6 +109,13 @@ public final class CRUD {
         statement.executeInsert();
     }
 
+    public static void insertGrupo(SQLiteDatabase db, Grupo grupo) {
+        String insert = "INSERT INTO GRUPOS(NOMBRE) VALUES(?)";
+        SQLiteStatement statement = db.compileStatement(insert);
+        statement.bindString(1, grupo.getNombre());
+        statement.executeInsert();
+    }
+
     public static int countAlumnos(SQLiteDatabase db) {
         String select = "SELECT COUNT(ID) FROM ALUMNOS";
         Cursor cursor = db.rawQuery(select, null);
@@ -132,5 +139,42 @@ public final class CRUD {
                     cursor.getString(indexNombre));
         }
         return grupo;
+    }
+
+    public static Grupo selectGrupoByNombre(SQLiteDatabase db, String nombre) {
+        Grupo grupo = null;
+
+        String select = "SELECT * FROM GRUPOS WHERE NOMBRE = ?";
+        Cursor cursor = db.rawQuery(select, new String[]{String.valueOf(nombre)});
+
+        if (cursor.moveToFirst()){
+            int indexId = cursor.getColumnIndex("ID");
+            int indexNombre = cursor.getColumnIndex("NOMBRE");
+            grupo = new Grupo(
+                    cursor.getInt(indexId),
+                    cursor.getString(indexNombre));
+        }
+        return grupo;
+    }
+
+    public static void updateGrupo(SQLiteDatabase db, Grupo grupo) {
+        String delete = "UPDATE GRUPOS SET NOMBRE = ? WHERE ID = ?";
+        SQLiteStatement statement = db.compileStatement(delete);
+        statement.bindString(1, grupo.getNombre());
+        statement.bindLong(2, grupo.getId());
+        int row = statement.executeUpdateDelete();
+        if (row != 1){
+            throw new SQLiteDatabaseCorruptException("N GRUPOS ACTUALIZADOS != 1");
+        }
+    }
+
+    public static void deleteGrupoById(SQLiteDatabase db, int id) {
+        String delete = "DELETE FROM GRUPOS WHERE ID = ?";
+        SQLiteStatement statement = db.compileStatement(delete);
+        statement.bindLong(1, id);
+        int row = statement.executeUpdateDelete();
+        if (row != 1){
+            throw new SQLiteDatabaseCorruptException("N GRUPOS BORRADOS != 1");
+        }
     }
 }

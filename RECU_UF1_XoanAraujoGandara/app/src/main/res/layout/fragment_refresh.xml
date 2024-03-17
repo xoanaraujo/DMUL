@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/update_bg"
     tools:context=".controller.fragment.RefreshFragment">
 
     <ImageButton
         android:id="@+id/iBtnFrgRefresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/sync_bg"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:background="@drawable/update_bg"
         android:src="@drawable/sync_48"
         tools:ignore="SpeakableTextPresentCheck" />
 </FrameLayout>

@@ -7,75 +7,75 @@
     android:layout_height="match_parent"
     tools:context=".controller.activity.ManagementActivity">
 
+    <Spinner
+        android:id="@+id/spGrupos"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="0.4"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/iBtnActManagementEditGrupo"
+        app:layout_constraintStart_toStartOf="@+id/iBtnActManagementAtras"
+        app:layout_constraintTop_toBottomOf="@+id/iBtnActManagementAtras" />
+
+    <ImageButton
+        android:id="@+id/iBtnActManagementEditGrupo"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/update_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/spGrupos"
+        app:layout_constraintEnd_toStartOf="@+id/iBtnActManagementAddGrupo"
+        app:layout_constraintTop_toTopOf="@+id/spGrupos"
+        app:srcCompat="@drawable/grupo_edit_32"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/iBtnActManagementAddGrupo"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:background="@drawable/insert_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/spGrupos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spGrupos"
+        app:srcCompat="@drawable/grupo_new_32"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <ListView
         android:id="@+id/lvAlumnos"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnActManagementAddAlumno"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/iBtnActManagementAddAlumno"
+        app:layout_constraintEnd_toEndOf="@+id/iBtnActManagementAddGrupo"
         app:layout_constraintStart_toStartOf="@+id/iBtnActManagementAtras"
-        app:layout_constraintTop_toBottomOf="@+id/iBtnActManagementAtras">
-
-        <Spinner
-            android:id="@+id/spGrupos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.4"
-            android:minHeight="48dp" />
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_arrow_back_48" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_arrow_back_48" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnActManagementAddAlumno"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="64dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Nuevo Alumno"
-        android:textSize="20sp"
-        app:backgroundTint="#1B5E20"
-        app:cornerRadius="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/spGrupos" />
 
     <ImageButton
         android:id="@+id/iBtnActManagementAtras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_arrow_back_48"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/iBtnActManagementAddAlumno"
+        android:layout_width="64dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/insert_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iBtnActManagementAddGrupo"
+        app:srcCompat="@drawable/alumno_new_32"
         tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
