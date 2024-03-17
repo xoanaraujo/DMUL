@@ -68,15 +68,15 @@ public class MainActivity extends AppCompatActivity implements RefreshFragment.R
                     tvAccion.setText("???");
                 }break;
                 case INSERT: {
-                    tvAccion.setText("Insercion");
+                    tvAccion.setText("Alumno insertado");
                     tvAccion.setTextColor(Color.GREEN);
                 } break;
                 case UPDATE: {
-                    tvAccion.setText("Actualizacion");
+                    tvAccion.setText("Alumno actualizado");
                     tvAccion.setTextColor(Color.BLUE);
                 } break;
                 case DELETE: {
-                    tvAccion.setText("Borrado ");
+                    tvAccion.setText("Alumno borrado");
                     tvAccion.setTextColor(Color.RED);
                 } break;
             }
@@ -87,7 +87,32 @@ public class MainActivity extends AppCompatActivity implements RefreshFragment.R
             MySQLiteHelper sqLiteHelper = new MySQLiteHelper(this);
             Grupo grupo = CRUD.selectGrupoById(sqLiteHelper.getReadableDatabase(), idGrupo);
             tvIdGrupoAlumno.setText(grupo == null ? "" : grupo.getNombre());
-        } else {
+        } else if ((id = preferences.getInt("idG", -1)) != -1){
+            String nombre = preferences.getString("nombreG", "");
+            AccionType accionType = AccionType.valueOf(preferences.getString("accionType", "NONE"));
+            tvTitle.setText("Ultima accion");
+            switch (accionType){
+                case NONE: {
+                    tvAccion.setText("???");
+                }break;
+                case INSERT: {
+                    tvAccion.setText("Grupo insertado");
+                    tvAccion.setTextColor(Color.GREEN);
+                } break;
+                case UPDATE: {
+                    tvAccion.setText("Grupo actualizado");
+                    tvAccion.setTextColor(Color.BLUE);
+                } break;
+                case DELETE: {
+                    tvAccion.setText("Grupo borrado");
+                    tvAccion.setTextColor(Color.RED);
+                } break;
+            }
+            tvIdAlumno.setText(String.valueOf(id));
+            tvDniAlumno.setText(nombre);
+            tvNombreAlumno.setText("");
+            tvIdGrupoAlumno.setText("");
+        }else {
             Utils.launchToast(this, "No hay acciones registradas");
         }
     }

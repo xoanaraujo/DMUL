@@ -29,6 +29,7 @@ public class GrupoActivity extends AppCompatActivity {
     private TextView tvId;
     private EditText etNombre;
     private ImageButton iBtnSave, iBtnDelete, iBtnAtras;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +45,11 @@ public class GrupoActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        if (intent.hasExtra("grupo")){
+        if (intent.hasExtra("grupo")) {
             grupo = (Grupo) intent.getSerializableExtra("grupo");
-             tvId.setText(String.valueOf(grupo.getId()));
+            tvId.setText(String.valueOf(grupo.getId()));
             etNombre.setText(grupo.getNombre());
-            iBtnAtras.setOnClickListener( e -> {
+            iBtnAtras.setOnClickListener(e -> {
                 launchManagementActivity(grupo.getId());
             });
         } else {
@@ -56,11 +57,11 @@ public class GrupoActivity extends AppCompatActivity {
             tvId.setText("Nuevo Grupo");
             iBtnDelete.setVisibility(View.INVISIBLE);
             iBtnDelete.setActivated(false);
-            iBtnAtras.setOnClickListener( e -> launchManagementActivity());
+            iBtnAtras.setOnClickListener(e -> launchManagementActivity());
         }
 
-        iBtnSave.setOnClickListener( e -> guardar());
-        iBtnDelete.setOnClickListener( e -> borrar());
+        iBtnSave.setOnClickListener(e -> guardar());
+        iBtnDelete.setOnClickListener(e -> borrar());
     }
 
     private void launchManagementActivity(int id) {
@@ -78,14 +79,14 @@ public class GrupoActivity extends AppCompatActivity {
         String nombre = etNombre.getText().toString();
         grupo.setNombre(nombre);
         SQLiteDatabase db = sqLiteHelper.getWritableDatabase();
-        if (CRUD.selectGrupoById(db, grupo.getId()) != null){
+        if (CRUD.selectGrupoById(db, grupo.getId()) != null) {
             // ACTUALIZANDO
             CRUD.updateGrupo(db, grupo);
             Utils.launchToast(this, "Grupo actualizado");
             savePrefs(AccionType.UPDATE);
             launchManagementActivity();
         } else {
-            if (CRUD.selectGrupoByNombre(db, nombre) != null){
+            if (CRUD.selectGrupoByNombre(db, nombre) != null) {
                 // INSERTANDO
                 Utils.launchToast(this, "Grupo existente");
             } else {
@@ -100,12 +101,12 @@ public class GrupoActivity extends AppCompatActivity {
 
     private void borrar() {
         SQLiteDatabase db = sqLiteHelper.getWritableDatabase();
-        if (CRUD.selectGrupos(db).length == 1){
+        if (CRUD.selectGrupos(db).length == 1) {
             Utils.launchToast(this,
                     "  El ultimo grupo\n" +
-                         "no se puede borrar");
+                            "no se puede borrar");
         }
-        if(CRUD.selectAlumnosByIdGrupo(db, grupo.getId()).length != 0){
+        if (CRUD.selectAlumnosByIdGrupo(db, grupo.getId()).length != 0) {
             Utils.launchToast(this, "Grupo con alumnos");
         } else {
             CRUD.deleteGrupoById(db, grupo.getId());
@@ -113,7 +114,8 @@ public class GrupoActivity extends AppCompatActivity {
             launchManagementActivity();
         }
     }
-    private void savePrefs(AccionType accionType){
+
+    private void savePrefs(AccionType accionType) {
         SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
         preferences.edit().clear()
                 .putInt("idG", grupo.getId())
