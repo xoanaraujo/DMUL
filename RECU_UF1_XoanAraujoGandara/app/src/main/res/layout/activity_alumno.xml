@@ -47,7 +47,7 @@
     <Spinner
         android:id="@+id/spGruposAlumno"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/etDniAlumno"
         app:layout_constraintStart_toStartOf="@+id/tvAcIdAlumno"
@@ -68,7 +68,7 @@
     <ImageButton
         android:id="@+id/iBtnActGrupoDelete"
         android:layout_width="64dp"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/delete_bg"
         app:layout_constraintEnd_toStartOf="@+id/iBtnActAlumnoSave"
@@ -79,7 +79,7 @@
     <ImageButton
         android:id="@+id/iBtnActAlumnoSave"
         android:layout_width="64dp"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/insert_bg"
         app:layout_constraintEnd_toEndOf="@+id/etDniAlumno"
