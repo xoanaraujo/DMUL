@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Recu_UF1_XoanAraujoGandara</string>
+    <string name="borrado">BORRADO</string>
+    <string name="hotel_ocupado">Hotel con habitaciones</string>
+    <string name="ultimo_hotel">Ultimo hotel</string>
+    <string-array name="hoteles">
+        <item>Rias Baixas</item>
+    </string-array>
+</resources>

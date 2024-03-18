@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="borrado">BORRADO</string>
+    <string name="hotel_ocupado">Hotel con habitaciones</string>
+    <string name="ultimo_hotel">Ultimo hotel</string>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.activity.HabitacionActivity">
+
+    <EditText
+        android:id="@+id/etActHabitacionNumero"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/spActHabitacionHotel"
+        app:layout_constraintStart_toStartOf="@+id/spActHabitacionHotel"
+        app:layout_constraintTop_toBottomOf="@+id/spActHabitacionHotel"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Spinner
+        android:id="@+id/spActHabitacionHotel"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/iBtnActHabitacionSave"
+        android:layout_width="64dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/insert_bg"
+        app:layout_constraintEnd_toEndOf="@+id/etActHabitacionNumero"
+        app:layout_constraintTop_toBottomOf="@+id/etActHabitacionPrecio"
+        app:srcCompat="@drawable/save_32"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/iBtnActHabitacionDelete"
+        android:layout_width="64dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/delete_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/iBtnActHabitacionSave"
+        app:layout_constraintEnd_toStartOf="@+id/iBtnActHabitacionSave"
+        app:layout_constraintTop_toTopOf="@+id/iBtnActHabitacionSave"
+        app:srcCompat="@drawable/remove_32"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:id="@+id/etActHabitacionPrecio"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="100"
+        android:inputType="number"
+        android:textAlignment="viewEnd"
+        app:layout_constraintEnd_toEndOf="@+id/etActHabitacionNumero"
+        app:layout_constraintStart_toStartOf="@+id/iBtnActHabitacionDelete"
+        app:layout_constraintTop_toBottomOf="@+id/etActHabitacionNumero"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="€"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/etActHabitacionPrecio"
+        app:layout_constraintStart_toEndOf="@+id/etActHabitacionPrecio"
+        app:layout_constraintTop_toTopOf="@+id/etActHabitacionPrecio" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
